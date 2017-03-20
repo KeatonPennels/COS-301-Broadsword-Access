@@ -1,0 +1,12 @@
+body
+{
+    background-image: url("../img/seigaiha.png");
+    background-attachment: fixed; 
+    font-family: 'Lato', serif;
+}
+
+.jumbotron
+{
+    text-align:center;
+}
+
