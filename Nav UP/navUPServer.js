@@ -103,6 +103,8 @@ app.post("/deleteLocation", function(request, response)
 
 });
 
-app.listen(3000, function () {
-  console.log('NavUP listening on port 3000!')
-})
+var port = process.argv[process.argv.length - 1];
+
+app.listen(port, function () {
+  console.log('NavUP listening on port ' + port);
+});
