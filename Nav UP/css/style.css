@@ -10,3 +10,28 @@ body
     text-align:center;
 }
 
+.newRoute
+{
+	margin-top:3%;
+}
+
+.lab
+{
+	margin-left:5px;
+}
+#map
+{
+	margin-top:2%;
+	border: 1px solid black;
+}
+#heading
+{
+	margin-top:5%;
+	text-align:center;
+
+}
+/*.box
+{
+	border: 1px solid black;
+}
+*/
