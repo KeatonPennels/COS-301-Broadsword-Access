@@ -1,0 +1,104 @@
+<nav id="nav" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+		<div class="navbar-header">
+	        <a class="navbar-brand" href="#">Nav UP</a>
+	    </div>
+	    <ul class="nav navbar-nav navigation">
+	        <li class="active"><a href="">Home</a></li>
+	        <li id="profile" ng-show="profile"><a href="">Profile</a></li>
+	        <li id="navigate" ng-show="navigate"><a href="">Navigate</a></li>
+	        <li id="poi" ng-show="poi"><a href="">Points of Interest</a></li>
+	        <li id="events" ng-show="events"><a href="">Events</a></li>
+	        <li id="manageGis" ng-show="manageGis"><a href="">Manage GIS</a></li>
+	        <li id="manageUsers" ng-show="manageUsers"><a href="">Manage Users</a></li>
+	        <li id="manageEvents" ng-show="manageEvents"><a href="">Manage Events</a></li>
+	        <li id="manageLocations" ng-show="manageLocations"><a href="">Manage Locations</a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+			<li><a href="">Log Out</a></li>
+	    </ul>
+    </div>
+</nav>
+
+<div class="container">
+	<div class="row" id="findGISObject" ng-show="findGISObject">
+		
+		<div class="col-md-8 col-md-offset-2">
+		
+			<input ng-model="searchGIS" name="SearchGIS" type="text" class="form-control" placeholder="Search for GIS object">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>GIS ID</th>
+						<th>Name</th>
+						<th>Coordinates</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="GISObject in GISObjects | filter : search">
+						<td>{{GISObject.id}}</td>
+						<td>{{GISObject.name}}</td>
+						<td>{{GISObject.coordinates}}</td>
+						<td>
+							<button class="btn btn-default" ng-click="getCurrentLocation()">Get Current Location</button>
+							<button class="btn btn-default" ng-click="editGISObject(GISObject.id)">Edit GIS Object</button>
+							<button class="btn btn-default" ng-click="deleteGISObjectPrompt(GISObject.id)">Delete GIS Object</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-1">
+			<button class="btn btn-default" ng-click="addGISObject()">Add GIS Object</button>
+		</div>	
+	</div>
+</div>
+<div class="row" id="AddGISObject" ng-show="AddGISObject">
+	<div class="col-md-8">
+		<form>
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" id="name" ng-model="name" />
+			</div>
+			<div>
+				<label for="coordinates">Coordinates</label>
+				<input type="text" class="form-control" id="coordinates" ng-model="coordinates" />
+			</div>
+
+			<button class="btn btn-default" ng-click="saveGISObject()">Save GIS Object</button>
+			<button class="btn btn-default" ng-click="back()">Back</button>
+		</form>
+	</div>
+</div>
+
+<div class="row" id="EditGISObject" ng-show="EditGISObject">
+	<div class="col-md-8">
+		<form>
+		<div class="form-group">
+				<label for="GISObjectID">ID</label>
+				<input type="text" class="form-control" id="GISObjectID" ng-model="GISObjectID" disabled/>
+			</div>
+			<div class="form-group">
+				<label for="GISObjectName">Name</label>
+				<input type="text" class="form-control" id="GISObjectName" ng-model="GISObjectName" />
+			</div>
+			<div class="form-group">
+				<label for="GISObjectCoordinates">Name</label>
+				<input type="text" class="form-control" id="GISObjectCoordinates" ng-model="GISObjectCoordinates" />
+			</div>
+
+			<button class="btn btn-default" ng-click="saveGISObjectEdits()">Save Changes</button>
+			<button class="btn btn-default" ng-click="back()">Back</button>
+		</form>
+	</div>
+</div>
+
+<div class="row" id="GISDeletePrompt" ng-show="GISDeletePrompt">
+	<div class="col-md-8 col-md-offset-2" style="text-align:center" ng-model="deleteGISBody">
+		<h4>{{deleteGISBody}}</h4>
+		<br/>
+		<br/>
+		<button class="btn btn-default" ng-click="deleteGISObject()">Yes</button>
+		<button class="btn btn-default" ng-click="back()">No</button>
+	</div>
+</div>
