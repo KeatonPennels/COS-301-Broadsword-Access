@@ -1,0 +1,36 @@
+
+
+<html>
+<head>
+</head>
+<div class="container-fluid">
+    <div class="jumbotron">
+    <h1>Nav UP</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form id="addEvent">
+                <fieldset>
+                    <legend>Add Event</legend>
+                    <div class="form-group">
+                        <label>Name of Event</label>
+                        <input type="text" class="form-control" id="eventName" required>
+                    </div>
+                     <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" class="form-control" id="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" class="form-control" id="location" required>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Add Event">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<form method="get" action="/#/events">
+    <button type="submit">Back</button>
+</form>
+</html>
