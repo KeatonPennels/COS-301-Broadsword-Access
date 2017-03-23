@@ -1,0 +1,88 @@
+<nav id="nav" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Nav UP</a>
+        </div>
+        <ul class="nav navbar-nav navigation">
+            <li><a href="">Home</a></li>
+            <li id="profile" ng-show="profile"><a href="">Profile</a></li>
+            <li id="navigate" ng-show="navigate"><a href="">Navigate</a></li>
+            <li class="active" id="poi" ng-show="poi"><a href="">Points of Interest</a></li>
+            <li id="events" ng-show="events"><a href="">Events</a></li>
+            <li id="manageGis" ng-show="manageGis"><a href="">Manage GIS</a></li>
+            <li id="manageUsers" ng-show="manageUsers"><a href="">Manage Users</a></li>
+            <li id="manageEvents" ng-show="manageEvents"><a href="">Manage Events</a></li>
+            <li id="manageLocations" ng-show="manageLocations"><a href="">Manage Locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="">Log Out</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+
+        </div>
+    </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <form id="searchLocation">
+        <fieldset>
+            <legend>Search Location</legend>
+
+            <div class="form-group">
+                <input placeholder="Enter Location Name" type="location" class="form-control" id="location" name="location" ng-model="locationString">
+            </div>
+            <input class="btn btn-default" type="button" value="Search" ng-click="searchLocation()">
+        </fieldset>
+    </form>
+    <br>
+    <form id="locationActions">
+        <fieldset>
+            <legend>Location Actions:</legend>
+
+            <input class="btn btn-default" type="button" value="Save Current Location" ng-click="saveLocation()">
+            <br>
+            <input class="btn btn-default" type="button" value="Get Current Device Location" ng-click="getCurrentDeviceLocation()">
+        </fieldset>
+    </form>
+    <br>
+    <form id="adminActions" ng-show="manageGis">
+        <fieldset>
+            <legend>Admin Actions:</legend>
+
+            <div class="form-group">
+                <input placeholder="Enter Location Name" type="location" class="form-control" id="location" name="location" ng-model="locationString">
+            </div>
+            <input class="btn btn-default" type="button" value="Add Location" ng-click="addLocation()">
+            <br>
+            <br>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Choose Location <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">Musaion Statue</a></li>
+                    <li><a href="">Aula Grass Clock</a></li>
+                    <li><a href="">Sci-Enza Jet</a></li>
+                    <li><a href="">Natural Sciences Ball</a></li>
+                </ul>
+            </div>
+            <input class="btn btn-default" type="button" value="Modify Location" ng-click="modifyLocation()">
+            <br>
+            <br>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Choose Location <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">Musaion Statue</a></li>
+                    <li><a href="">Aula Grass Clock</a></li>
+                    <li><a href="">Sci-Enza Jet</a></li>
+                    <li><a href="">Natural Sciences Ball</a></li>
+                </ul>
+            </div>
+            <input class="btn btn-default" type="button" value="Remove Location" ng-click="removeLocation()">
+        </fieldset>
+    </form>
+</div>

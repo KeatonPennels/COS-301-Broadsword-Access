@@ -13,6 +13,11 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
     	templateUrl: "register.html",
     	controller: "authenticateController"
     })
+    .when("/poiSection:status",
+        {
+            templateUrl: "poiSection.html",
+            controller: "poiController"
+        })
     .when("/home:status",
     {
     	templateUrl: "home.html",
