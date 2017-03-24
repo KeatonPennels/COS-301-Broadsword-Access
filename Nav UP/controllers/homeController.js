@@ -26,7 +26,7 @@ function ($scope, $location, $routeParams)
 
 	$scope.navigate = function()
 	{
-		$location.path("/navigate");
+		$location.path("/navigate" + status);
 	}
 	$scope.manageLocations = function()
 	{
