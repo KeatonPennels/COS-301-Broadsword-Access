@@ -1,12 +1,8 @@
 angular.module('navUP').controller('homeController', 
 ['$scope', '$location', '$routeParams',
-function ($scope, $location, $routeParams)
+function ($scope, $location, $routeParams) 
 {
 	var status = $routeParams.status;
-
-	$scope.poiSection = function () {
-        $location.path("/poiSection"+status);
-    }
 
 	if(status === "guest")
 	{

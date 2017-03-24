@@ -3,12 +3,6 @@ body
     background-image: url("../img/seigaiha.png");
     background-attachment: fixed; 
     font-family: 'Lato', serif;
-    padding-top: 65px;
-}
-@media (max-width: 768px) {
-    body {
-        padding-top: 290px;
-    }
 }
 
 .jumbotron
