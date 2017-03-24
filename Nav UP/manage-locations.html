@@ -1,0 +1,97 @@
+<nav id="nav" class="navbar navbar-inverse">
+    <div class="container-fluid">
+		<div class="navbar-header">
+	        <a class="navbar-brand" href="#">Nav UP</a>
+	    </div>
+	    <ul class="nav navbar-nav navigation">
+	        <li class="active"><a href="">Home</a></li>
+	        <li id="profile" ng-show="profile"><a href="">Profile</a></li>
+	        <li id="navigate" ng-show="navigate"><a href="">Navigate</a></li>
+	        <li id="poi" ng-show="poi"><a href="">Points of Interest</a></li>
+	        <li id="events" ng-show="events"><a href="">Events</a></li>
+	        <li id="manageGis" ng-show="manageGis"><a href="">Manage GIS</a></li>
+	        <li id="manageUsers" ng-show="manageUsers"><a href="">Manage Users</a></li>
+	        <li id="manageEvents" ng-show="manageEvents"><a href="">Manage Events</a></li>
+	        <li id="manageLocations" ng-show="manageLocations"><a href="">Manage Locations</a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+			<li><a href="/">Log Out</a></li>
+	    </ul>
+    </div>
+</nav>
+
+<div class="container">
+	<div class="row" id="ViewLocations" ng-show="ViewLocations">
+		<div class="col-md-8 col-md-offset-2">
+			<input ng-model="search" name="Search" type="text" class="form-control" placeholder="Search for location">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="location in Locations | filter : search">
+						<td>{{location.id}}</td>
+						<td>{{location.name}}</td>
+						<td>
+							<button class="btn btn-default" ng-click="editLocation(location.id)">Edit Location</button>
+							<button class="btn btn-default" ng-click="deleteLocationPrompt(location.id)">Remove Location</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-1">
+			<button class="btn btn-default" ng-click="addLocation()">Add Location</button>
+		</div>	
+	</div>
+
+	<!-- Edit Location -->
+	<div class="row" id="EditLocation" ng-show="EditLocation">
+		<div class="col-md-8">
+			<form>
+			<div class="form-group">
+					<label for="locationID">ID</label>
+					<input type="text" class="form-control" id="locationID" ng-model="locationID" disabled/>
+				</div>
+				<div class="form-group">
+					<label for="locationName">Name</label>
+					<input type="text" class="form-control" id="locationName" ng-model="locationName" />
+				</div>
+
+				<button class="btn btn-default" ng-click="saveEditLocation()">Save Changes</button>
+				<button class="btn btn-default" ng-click="back()">Back</button>
+			</form>
+		</div>
+	</div>
+
+		<!-- Add Location -->
+	<div class="row" id="AddLocation" ng-show="AddLocation">
+		<div class="col-md-8">
+			<form>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" ng-model="name" />
+				</div>
+
+				<button class="btn btn-default" ng-click="saveLocation()">Save Changes</button>
+				<button class="btn btn-default" ng-click="back()">Back</button>
+			</form>
+		</div>
+	</div>
+
+
+	<!-- Prompt -->
+	<div class="row" id="prompt" ng-show="prompt">
+		<div class="col-md-8 col-md-offset-2" style="text-align:center" ng-model="promptBody">
+			<h4>{{promptBody}}</h4>
+			<br/>
+			<br/>
+			<button class="btn btn-default" ng-click="deleteLocation()">Yes</button>
+			<button class="btn btn-default" ng-click="back()">No</button>
+		</div>
+	</div>
+</div>

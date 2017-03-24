@@ -23,4 +23,9 @@ function ($scope, $location, $routeParams)
 		$scope.manageLocations = true;
 		$scope.manageEvents = true;
 	}
+
+	$scope.manageLocations = function()
+	{
+		$location.path("/manageLocations" + status);
+	}
 }]);
