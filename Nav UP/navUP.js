@@ -33,6 +33,26 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
         templateUrl: "manage-locations.html",
         controller: "manageLocationsController"
     })
+    .when("/manageLocations:status",
+    {
+        templateUrl: "manage-locations.html",
+        controller: "manageLocationsController"
+    })
+    .when("/events",
+    {
+        templateUrl: "manageEvents.html",
+        controller: "authenticateController"
+    })
+    .when("/addEvent",
+    {
+        templateUrl: "addEvent.html",
+        controller: "authenticateController"
+    })
+    .when("/removeEvent",
+    {
+        templateUrl: "removeEvent.html",
+        controller: "authenticateController"
+    })
     .otherwise(
     {
         redirectTo: '/'
