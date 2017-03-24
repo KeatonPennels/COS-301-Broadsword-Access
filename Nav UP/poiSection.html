@@ -26,6 +26,8 @@
     </div>
 </nav>
 <div class="container-fluid">
+    <div ng-show="locationReceived"class="alert alert-info" role="alert">{{locationReceivedString}}</div>
+    <div ng-show="locationSaved" class="alert alert-success" role="alert">Location Saved!</div>
     <form id="searchLocation">
         <fieldset>
             <legend>Search Location</legend>

@@ -3,6 +3,8 @@ angular.module('navUP').controller('poiController',
         function ($scope, $location, $routeParams)
         {
             var status = $routeParams.status;
+            $scope.locationSaved = false;
+            $scope.locationReceived = false;
 
             $scope.poiSection = function () {
                 $location.path("/poiSection"+status);
@@ -35,12 +37,15 @@ angular.module('navUP').controller('poiController',
 
             $scope.saveLocation = function()
             {
-                $location.path("/saveLocation");
+                $scope.locationSaved = true;
+                //$location.path("/saveLocation");
             }
 
             $scope.getCurrentDeviceLocation = function()
             {
-                $location.path("/getCurrentDeviceLocation");
+                $scope.locationReceived = true;
+                $scope.locationReceivedString = "IT 4-66, University of Pretoria"
+                //$location.path("/getCurrentDeviceLocation");
             }
 
             if(status === "admin")
