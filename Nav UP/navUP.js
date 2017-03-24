@@ -13,7 +13,7 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
         templateUrl: "register.html",
         controller: "authenticateController"
     })
-    .when("/navigate",
+    .when("/navigate:status",
     {
         templateUrl: "navigate.html",
         controller: "homeController"
