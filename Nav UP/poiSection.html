@@ -38,6 +38,10 @@
             <input class="btn btn-default" type="button" value="Search" ng-click="searchLocation()">
         </fieldset>
     </form>
+    <ul ng-show="searchedLocations" class="list-group">
+        <br>
+        <li class="list-group-item" ng-repeat="item in searchedItems">{{item}}</li>
+    </ul>
     <br>
     <form id="locationActions">
         <fieldset>
@@ -54,7 +58,7 @@
             <legend>Admin Actions:</legend>
 
             <div class="form-group">
-                <input placeholder="Enter Location Name" type="location" class="form-control" id="location" name="location" ng-model="locationString">
+                <input placeholder="Enter Location Name" type="location" class="form-control" id="location" name="location" ng-model="addLocationString">
             </div>
             <input class="btn btn-default" type="button" value="Add Location" ng-click="addLocation()">
             <br>
@@ -64,10 +68,7 @@
                     Choose Location <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="">Musaion Statue</a></li>
-                    <li><a href="">Aula Grass Clock</a></li>
-                    <li><a href="">Sci-Enza Jet</a></li>
-                    <li><a href="">Natural Sciences Ball</a></li>
+                    <li><a href="" ng-repeat="item in items">{{item}}</a></li>
                 </ul>
             </div>
             <input class="btn btn-default" type="button" value="Modify Location" ng-click="modifyLocation()">
@@ -78,13 +79,11 @@
                     Choose Location <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="">Musaion Statue</a></li>
-                    <li><a href="">Aula Grass Clock</a></li>
-                    <li><a href="">Sci-Enza Jet</a></li>
-                    <li><a href="">Natural Sciences Ball</a></li>
+                    <li><a href="" ng-repeat="item in items">{{item}}</a></li>
                 </ul>
             </div>
             <input class="btn btn-default" type="button" value="Remove Location" ng-click="removeLocation()">
         </fieldset>
     </form>
+    <br>
 </div>

@@ -5,6 +5,8 @@ angular.module('navUP').controller('poiController',
             var status = $routeParams.status;
             $scope.locationSaved = false;
             $scope.locationReceived = false;
+            $scope.searchedLocations = false;
+            $scope.items = ['Musaion Statue', 'Aula Grass Statue', 'Sci-Enza Statue', 'Natural Sciences Statue'];
 
             $scope.poiSection = function () {
                 $location.path("/poiSection"+status);
@@ -32,7 +34,18 @@ angular.module('navUP').controller('poiController',
 
             $scope.searchLocation = function()
             {
-                $location.path("/searchLocation" + $scope.locationString);
+                $scope.searchedLocations = true;
+
+                function hasTerm(itemText) {
+                    if (itemText.indexOf($scope.locationString) >= 0) {
+                        return true;
+                    }
+                }
+
+                $scope.searchedItems = $scope.items.filter(hasTerm);
+
+
+                //$location.path("/searchLocation" + $scope.locationString);
             }
 
             $scope.saveLocation = function()
@@ -50,17 +63,18 @@ angular.module('navUP').controller('poiController',
 
             if(status === "admin")
             {
-                $scope.addLocation = function(locationString)
+                $scope.addLocation = function()
                 {
-                    $location.path("/addLocation" + locationString);
+                    $scope.items.push($scope.addLocationString);
+                    //$location.path("/addLocation" + locationString);
                 }
 
-                $scope.modifyLocation = function(locationString)
+                $scope.modifyLocation = function()
                 {
                     $location.path("/modifyLocation" + locationString);
                 }
 
-                $scope.removeLocation = function(locationString)
+                $scope.removeLocation = function()
                 {
                     $location.path("/removeLocation" + locationString);
                 }
