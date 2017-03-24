@@ -1,14 +1,25 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>NavUp- My Account</title>
-     <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+<nav id="nav" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Nav UP</a>
+        </div>
+        <ul class="nav navbar-nav navigation">
+            <li class="active"><a href="">Home</a></li>
+            <li id="profile" ng-show="profile"><a href="">Profile</a></li>
+            <li id="navigate" ng-show="navigate"><a href="">Navigate</a></li>
+            <li id="poi" ng-show="poi"><a href="">Points of Interest</a></li>
+            <li id="events" ng-show="events"><a href="">Events</a></li>
+            <li id="manageGis" ng-show="manageGis"><a href="">Manage GIS</a></li>
+            <li id="manageUsers" ng-show="manageUsers"><a href="">Manage Users</a></li>
+            <li id="manageEvents" ng-show="manageEvents"><a href="">Manage Events</a></li>
+            <li id="manageLocations" ng-show="manageLocations"><a href="">Manage Locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="">Log Out</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
 <h1>My Account</h1>
      <form method="post">
         <div class="form-group">
@@ -35,11 +46,10 @@
         <div class="form-group">
             <button class="btn btn-primary" onclick="" ng-click="vm.saveUser()">Save</button>
             <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button>
-            <a class="btn btn-secondary" href="/index.html">Cancel</button>
+            <a class="btn btn-secondary" href="/index.html">Cancel</a>
         </div>
     </form>
 </div>
 
 
-</body>
-</html>
+
