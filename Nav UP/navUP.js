@@ -18,6 +18,11 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
     	templateUrl: "home.html",
     	controller: "homeController"
     })
+    .when("/manageLocations:status",
+    {
+        templateUrl: "manage-locations.html",
+        controller: "manageLocationsController"
+    })
     .otherwise(
     {
         redirectTo: '/'
