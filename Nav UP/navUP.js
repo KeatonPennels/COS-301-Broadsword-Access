@@ -10,8 +10,8 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
     })
     .when("/register",
     {
-    	templateUrl: "register.html",
-    	controller: "authenticateController"
+        templateUrl: "register.html",
+        controller: "authenticateController"
     })
     .when("/navigate",
     {
@@ -20,8 +20,18 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
     })
     .when("/home:status",
     {
-    	templateUrl: "home.html",
-    	controller: "homeController"
+        templateUrl: "home.html",
+        controller: "homeController"
+    })
+    .when("/manageGIS:status",
+    {
+        templateUrl: "manageGIS.html",
+        controller: "manageGisController"
+    })
+    .when("/manageLocations:status",
+    {
+        templateUrl: "manage-locations.html",
+        controller: "manageLocationsController"
     })
     .otherwise(
     {
