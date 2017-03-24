@@ -1,0 +1,97 @@
+<script src="server.js"></script>
+<nav id="nav" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Nav UP</a>
+                </div>
+                <ul class="nav navbar-nav navigation">
+                    <li><a href="">Home</a></li>
+                    <li class="active" id="navigate" ng-show="navigate"><a href="">Navigate</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="">Log Out</a></li>
+                </ul>
+        </div>
+</nav>
+<h2 id="heading">Navigation</h2>
+	<div class="row">
+        <div class="col-md-6 col-md-offset-3">
+        	<img id="map" src="img/map.png" alt="Map">
+        </div>
+   </div>
+
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-2">
+            <form class="newRoute">
+                <fieldset>
+                    <legend>Route Managment and Navigation</legend>
+                
+                    <div class="form-group">
+                        <label for="route">Route</label><br>
+                        <select id="route">
+                            <option value="Home">Main Gate To EBN</option>
+                            <option value="Home">IT Building from Engineering Gate</option>
+                        </select>
+                    </div>
+
+                    <input class="btn btn-default" type="button" value="Use Route to Navigate">
+                    <input class="btn btn-default" type="button" value="Modify Route">
+                    <input class="btn btn-default" type="button" value="Delete Route">
+                </fieldset>
+            </form>
+            </div>
+
+           <div class="col-md-4 col-md-offset-1"> 
+            <form class="newRoute" method="GET">
+                <fieldset>
+                    <legend>Calculate Route</legend>
+                
+                    <div class="form-group">
+                        <label for="from">From</label><br>
+                        <select name="locationFrom" id="from">
+                            <option value="Current Location">Current Location</option>
+                            <option value="Home">Main Gate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="to">To</label><br>
+                        <select name="locationTo" id="to">
+                            <option value="Home">Main Gate</option>
+                        </select>
+                    </div>
+
+                    <input class="btn btn-default" type="submit" value="Calculate Route">
+                    <input class="btn btn-default" type="button" value="Save Route">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+
+     <div class="row" style="margin-top:5%;">
+        <div class="col-md-4 col-md-offset-2">
+            <form>
+                <fieldset>
+                    <legend>Record Current Route</legend>
+                    <input class="btn btn-default" type="button" value="Start Recording Route">
+                    <input class="btn btn-default" type="button" value="Stop Recording Route">
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="col-md-4 col-md-offset-1">
+            <form>
+                <fieldset>
+                    <legend>User preferences</legend>
+                
+                    <div class="form-group">
+                        <input id ="user" name="user" type="radio" value="shortest"><label class="lab" for="user">Calculate Shortest Route</label><br>
+                        <input id ="simp" name="user" type="radio" value="simplest"><label class="lab" for="simp">Calculate Simplest Route</label><br>
+                    </div>
+
+                    <input class="btn btn-default" type="button" value="Save">
+                </fieldset>
+            </form>
+        </div>
+    </div>
