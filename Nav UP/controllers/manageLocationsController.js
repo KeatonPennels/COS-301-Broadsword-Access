@@ -24,6 +24,29 @@ function ($scope, $location, $routeParams, $http)
 		$scope.manageEvents = true;
 	}
 
+$scope.navigate = function()
+	{
+		$location.path("/navigate" + status);
+	}
+	$scope.manageLocations = function()
+	{
+		$location.path("/manageLocations" + status);
+	}
+
+	$scope.poi = function()
+	{
+		$location.path("/poi" + status);
+	}
+
+	$scope.manageEvents = function()
+	{
+		$location.path("/manageEvents" + status);
+	}
+
+	$scope.manageGis = function()
+	{
+		$location.path("/manageGIS" + status);
+	}
 	$scope.ViewLocations = true;
 
 	$http.get("/viewLocations").then(function(response)

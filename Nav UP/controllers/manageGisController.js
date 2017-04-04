@@ -1,23 +1,63 @@
 angular.module('navUP').controller('manageGisController', 
 ['$scope', '$http', '$routeParams', '$location',function ($scope, $http, $routeParams, $location){
-	var status = $routeParams.status;
+	
+	var user = $routeParams.user.split(",");
+	var id = user[0];
+	var status = user[1];
 
-	if(status === "guest"){
-		$scope.navigate = true;
+	$scope.navigateNav = true;
+
+    if(status == "user" || status == "admin")
+    {
+        $scope.profileNav = true;
+        $scope.poiNav = true;
+        $scope.eventsNav= true;
+    }
+
+    if(status == "admin")
+    {
+        $scope.manageGisNav = true;
+        $scope.manageUsersNav = true;
+        $scope.manageLocationsNav = true;
+        $scope.manageEventsNav = true;
+    }
+
+    $scope.home = function()
+    {
+    	$location.path("/home" + user);
+    }
+
+	$scope.profile = function()
+	{
+		$location.path("/profile" + user);
 	}
 
-	if(status === "user" || status === "admin"){
-		$scope.profile = true;
-		$scope.poi = true;
-		$scope.events = true;
+	$scope.navigate = function()
+	{
+		$location.path("/navigate" + user);
+	}
+	$scope.manageLocations = function()
+	{
+		$location.path("/manageLocations" + user);
 	}
 
-	if(status === "admin"){
-		$scope.manageGis = true;
-		$scope.manageUsers = true;
-		$scope.manageLocations = true;
-		$scope.manageEvents = true;
+	$scope.poi = function()
+	{
+		$location.path("/poi" + user);
 	}
+
+	$scope.manageEvents = function()
+	{
+		$location.path("/manageEvents" + user);
+	}
+
+	$scope.manageGis = function()
+	{
+		$location.path("/manageGIS" + user);
+	}
+
+	//manage gis stuff
+
 	$scope.findGISObject = true;
 
 	$http.get("/findGisObject").then(function(response)
@@ -25,17 +65,6 @@ angular.module('navUP').controller('manageGisController',
 		if(response.status == 200)
 		{
 			$scope.GISObjects = response.data;
-		}
-		else
-		{
-			console.log("Error Occurred");
-		}
-	});
-	$http.get("/findCurrentCoordinates").then(function(response)
-	{
-		if(response.status == 200)
-		{
-			$scope.GISObject.coordinates = response.data;
 		}
 		else
 		{
@@ -53,7 +82,7 @@ angular.module('navUP').controller('manageGisController',
 	{
 		$http.post("/addGISObject",
 		{
-			name: $scope.name
+			name: $scope.name,
 			coordinates: $scope.coordinates
 		})
 		.then(function(response)
@@ -73,19 +102,19 @@ angular.module('navUP').controller('manageGisController',
 	$scope.back = function()
 	{
 		$scope.findGISObject = true;
-		$scope.EditGISObject = false;
+		$scope.EditGISObj = false;
 		$scope.AddGISObject = false;
-		$scope.prompt = false;
+		$scope.GISDeletePrompt = false;
 	}
 
-	$scope.EditGISObject = function(id)
+	$scope.editGISObject = function(id)
 	{
 		$scope.findGISObject = false;
-		$scope.EditGISObject = true;
+		$scope.EditGISObj = true;
 
 		for(var key in $scope.GISObjects)
 		{
-			if($scope.EditGISObject[key].id == id)
+			if($scope.GISObjects[key].id == id)
 			{
 				$scope.GISObjectID = $scope.GISObjects[key].id;
 				$scope.GISObjectName = $scope.GISObjects[key].name;
@@ -151,10 +180,10 @@ angular.module('navUP').controller('manageGisController',
 				$scope.GISObjects = response.data;
 			});
 
-			$scope.prompt = false;
+			$scope.GISDeletePrompt = false;
 			$scope.findGISObject = true;
 		});
 	}
 
 
-} 
+}]);

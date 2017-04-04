@@ -1,14 +1,69 @@
-<html>
-<head>
-</head>
-<div class="container-fluid">
-    <div class="jumbotron">
-    <h1>Nav UP</h1>
+<nav id="nav" class="navbar navbar-inverse">
+    <div class="container-fluid">
+		<div class="navbar-header">
+	        <a class="navbar-brand" href="#">Nav UP</a>
+	    </div>
+	    <ul class="nav navbar-nav navigation">
+            <li ><a href="" ng-click="home()">Home</a></li>
+            <li id="profileNav" ng-show="profileNav"><a href="" ng-click="profile()">Profile</a></li>
+            <li id="navigateNav" ng-show="navigateNav"><a href="" ng-click="navigate()">Navigate</a></li>
+            <li id="poiNav" ng-show="poiNav"><a href="" ng-click="poi()">Points of Interest</a></li>
+            <li id="eventsNav" ng-show="eventsNav"><a href="">Events</a></li>
+            <li id="manageGisNav" ng-show="manageGisNav"><a href="" ng-click="manageGis()">Manage GIS</a></li>
+            <li id="manageUsersNav" ng-show="manageUsersNav"><a href="">Manage Users</a></li>
+            <li class="active" id="manageEventsNav" ng-show="manageEventsNav"><a href="" ng-click="manageEvents()">Manage Events</a></li>
+            <li id="manageLocationsNav" ng-show="manageLocationsNav"><a href="" ng-click="manageLocations()">Manage Locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Log Out</a></li>
+        </ul>
     </div>
-<a href= "/#/addEvent" ><button type="submit">Add Event</button></a>
-<br>
-<a href= "/#/removeEvent" ><button type="submit">Remove Event</button></a>
-<br>
-<a href= "/#/home" ><button type="submit">Back</button></a>
+</nav>
 
-</html>
+<div class="container">
+
+	<button class="btn btn-default" type="submit">Add Event</button>
+	<br>
+	<button class="btn btn-default" type="submit">Remove Event</button>
+	<br>
+
+	<div class="row" id="AddEvent" ng-show="AddEvent">
+        <div class="col-md-6 col-md-offset-3">
+            <form id="addEvent">
+                <fieldset>
+                    <legend>Add Event</legend>
+                    <div class="form-group">
+                        <label>Name of Event</label>
+                        <input type="text" class="form-control" id="eventName" required>
+                    </div>
+                     <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" class="form-control" id="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" class="form-control" id="location" required>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Add Event">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" id="RemoveEvent" ng-show="RemoveEvent">
+        <div class="col-md-6 col-md-offset-3">
+        
+               <form id="removeEvent">
+                <fieldset>
+                    <legend>Remove Event</legend>
+                    <div class="form-group">
+                        <label>Name of Event</label>
+                        <input type="text" name="eventName" required>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Remove Event">
+                </fieldset>
+            </form> 
+        </div>
+    </div>
+
+</div>

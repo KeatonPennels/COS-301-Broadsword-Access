@@ -4,7 +4,7 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form id="login">
+            <form id="login" name="loginForm">
                 <fieldset>
                     <legend>Log In</legend>
                 
@@ -17,8 +17,7 @@
                         <input type="password" class="form-control" id="password" name="password" ng-model="password">
                     </div>
 
-                    <input class="btn btn-default" type="button" value="User login" ng-click="login('user')">
-                    <input class="btn btn-default" type="button" value="Admin login" ng-click="login('admin')">
+                    <input ng-disabled="loginForm.$invalid" class="btn btn-default" type="button" value="User login" ng-click="login('user')">
                 </fieldset>
             </form>
             <button class="btn btn-default pull-right" ng-click="register()">Click to Register</button>

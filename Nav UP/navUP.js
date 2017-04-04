@@ -13,40 +13,40 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
         templateUrl: "register.html",
         controller: "authenticateController"
     })
-    .when("/navigate:status",
+    .when("/navigate:user",
     {
         templateUrl: "navigate.html",
-        controller: "homeController"
+        controller: "navigateController"
     })
-    .when("/poiSection:status",
-        {
-            templateUrl: "poiSection.html",
-            controller: "poiController"
-        })
-    .when("/home:status",
+    .when("/home:user",
     {
         templateUrl: "home.html",
         controller: "homeController"
     })
-    .when("/manageGIS:status",
+    .when("/profile:user", 
+    {
+        templateUrl: "profile.html",
+        controller: "profileController"
+    })
+    .when("/manageGIS:user",
     {
         templateUrl: "manageGIS.html",
         controller: "manageGisController"
     })
-    .when("/manageLocations:status",
+    .when("/manageLocations:user",
     {
         templateUrl: "manage-locations.html",
         controller: "manageLocationsController"
     })
-    .when("/manageLocations:status",
+    .when("/manageLocations:user",
     {
         templateUrl: "manage-locations.html",
         controller: "manageLocationsController"
     })
-    .when("/events",
+    .when("/manageEvents:user", 
     {
         templateUrl: "manageEvents.html",
-        controller: "authenticateController"
+        controller: "manageEventsController"
     })
     .when("/addEvent",
     {
@@ -57,6 +57,11 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
     {
         templateUrl: "removeEvent.html",
         controller: "authenticateController"
+    })
+    .when("/poi:user",
+    {
+        templateUrl: "poiSection.html",
+        controller: "poiController"
     })
     .otherwise(
     {

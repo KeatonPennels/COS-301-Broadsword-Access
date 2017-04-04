@@ -1,39 +1,60 @@
 angular.module('navUP').controller('homeController', 
 ['$scope', '$location', '$routeParams',
-function ($scope, $location, $routeParams)
+function ($scope, $location, $routeParams) 
 {
-	var status = $routeParams.status;
+	var user = $routeParams.user.split(",");
+	var id = user[0];
+	var status = user[1];
 
-	$scope.poiSection = function () {
-        $location.path("/poiSection"+status);
+	$scope.navigateNav = true;
+
+    if(status == "user" || status == "admin")
+    {
+        $scope.profileNav = true;
+        $scope.poiNav = true;
+        $scope.eventsNav= true;
     }
 
-	if(status === "guest")
-	{
-		$scope.navigate = true;
-	}
-	
-	if(status === "user" || status === "admin")
-	{
-		$scope.profile = true;
-		$scope.poi = true;
-		$scope.events = true;
-	}
+    if(status == "admin")
+    {
+        $scope.manageGisNav = true;
+        $scope.manageUsersNav = true;
+        $scope.manageLocationsNav = true;
+        $scope.manageEventsNav = true;
+    }
 
-	if(status === "admin")
+    $scope.home = function()
+    {
+    	$location.path("/home" + user);
+    }
+
+	$scope.profile = function()
 	{
-		$scope.manageGis = true;
-		$scope.manageUsers = true;
-		$scope.manageLocations = true;
-		$scope.manageEvents = true;
+		$location.path("/profile" + user);
 	}
 
 	$scope.navigate = function()
 	{
-		$location.path("/navigate" + status);
+		$location.path("/navigate" + user);
 	}
 	$scope.manageLocations = function()
 	{
-		$location.path("/manageLocations" + status);
+		$location.path("/manageLocations" + user);
 	}
+
+	$scope.poi = function()
+	{
+		$location.path("/poi" + user);
+	}
+
+	$scope.manageEvents = function()
+	{
+		$location.path("/manageEvents" + user);
+	}
+
+	$scope.manageGis = function()
+	{
+		$location.path("/manageGIS" + user);
+	}
+
 }]);

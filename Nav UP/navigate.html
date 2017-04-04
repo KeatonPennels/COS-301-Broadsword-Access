@@ -1,22 +1,120 @@
-<script src="server.js"></script>
-<nav id="nav" class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Nav UP</a>
-                </div>
-                <ul class="nav navbar-nav navigation">
-                    <li><a href="">Home</a></li>
-                    <li class="active" id="navigate" ng-show="navigate"><a href="">Navigate</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="">Log Out</a></li>
-                </ul>
+<nav id="nav" class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Nav UP</a>
         </div>
+        <ul class="nav navbar-nav navigation">
+            <li ><a href="" ng-click="home()">Home</a></li>
+            <li id="profileNav" ng-show="profileNav"><a href="" ng-click="profile()">Profile</a></li>
+            <li class="active" id="navigateNav" ng-show="navigateNav"><a href="" ng-click="navigate()">Navigate</a></li>
+            <li id="poiNav" ng-show="poiNav"><a href="" ng-click="poi()">Points of Interest</a></li>
+            <li id="eventsNav" ng-show="eventsNav"><a href="">Events</a></li>
+            <li id="manageGisNav" ng-show="manageGisNav"><a href="" ng-click="manageGis()">Manage GIS</a></li>
+            <li id="manageUsersNav" ng-show="manageUsersNav"><a href="">Manage Users</a></li>
+            <li id="manageEventsNav" ng-show="manageEventsNav"><a href="" ng-click="manageEvents()">Manage Events</a></li>
+            <li id="manageLocationsNav" ng-show="manageLocationsNav"><a href="" ng-click="manageLocations()">Manage Locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Log Out</a></li>
+        </ul>
+    </div>
 </nav>
-<h2 id="heading">Navigation</h2>
+
+<div class="container-fluid">
+    <h2 id="heading">Navigation</h2>
 	<div class="row">
         <div class="col-md-6 col-md-offset-3">
-        	<img id="map" src="img/map.png" alt="Map">
+        	<div id="map" style="height: 500px;"></div>
+            <script>
+              var map;
+               // 
+              function initMap() 
+              {
+                //up campus coordinates -25.752163658 28.224499102
+                //it building: -25.755627 28.232553
+                map = new google.maps.Map(document.getElementById('map'), {
+                  center: {lat: -25.755033333333333, lng: 28.23083333333333},
+                  zoom: 16
+                });
+              }
+
+             
+
+        // Try HTML5 geolocation.
+                function getLocation()
+                {
+                    var marker = new google.maps.Marker({
+                        position: {lat: -25.7552303, lng: 28.2324397},
+                        map: map,
+                        title: "My Location",
+
+                    });  
+
+                    map.setZoom(20);
+                    map.panTo(marker.position);  
+                 } 
+
+              function handleLocationError(browserHasGeolocation, infoWindow, pos) 
+              {
+                infoWindow.setPosition(pos);
+                InfoWindow.setContent(browserHasGeolocation ?'Error: The Geolocation service failed.' :'Error: Your browser doesn\'t support geolocation.');
+              }
+
+            function calculateRoute()
+            {
+                navigator.geolocation.getCurrentPosition(function(position) 
+                {
+                    var directionsService = new google.maps.DirectionsService();
+                    var directionsDisplay = new google.maps.DirectionsRenderer();
+                    var pos = {
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude
+                    };
+                    var start = new google.maps.LatLng(-25.7552303, 28.2324397);
+                    //var end = new google.maps.LatLng(38.334818, -181.884886);
+                    var end = new google.maps.LatLng(-25.755846, 28.233151);
+                    /*
+        */
+                    var bounds = new google.maps.LatLngBounds();
+                    bounds.extend(start);
+                    bounds.extend(end);
+                    map.fitBounds(bounds);
+                    var request = {
+                        origin: start,
+                        destination: end,
+                        travelMode: google.maps.TravelMode.WALKING
+                    };
+                    directionsService.route(request, function (response, status) 
+                    {
+                        if (status == google.maps.DirectionsStatus.OK) 
+                        {
+                            directionsDisplay.setDirections(response);
+                            directionsDisplay.setMap(map);
+                        } 
+                        else 
+                        {
+                            alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+                        }
+                    });
+                });
+            }
+
+                
+            </script>
+            
+            <style>
+              /* Always set the map height explicitly to define the size of the div
+               * element that contains the map. */
+              #map {
+                height: 100%;
+              }
+              /* Optional: Makes the sample page fill the window. */
+              html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+              }
+            </style>
         </div>
    </div>
 
@@ -29,7 +127,7 @@
                 
                     <div class="form-group">
                         <label for="route">Route</label><br>
-                        <select id="route">
+                        <select id="route" class="form-control">
                             <option value="Home">Main Gate To EBN</option>
                             <option value="Home">IT Building from Engineering Gate</option>
                         </select>
@@ -46,22 +144,75 @@
             <form class="newRoute" method="GET">
                 <fieldset>
                     <legend>Calculate Route</legend>
-                
+                    <div class="btn btn-default" onclick="getLocation()">Get Current Position</div>
                     <div class="form-group">
-                        <label for="from">From</label><br>
-                        <select name="locationFrom" id="from">
+                        <label for="building">From: Building</label><br>
+                        <select name="locationFrom" id="building" class="form-control">
                             <option value="Current Location">Current Location</option>
-                            <option value="Home">Main Gate</option>
+                            <option value="Home">IT Building</option>
+                            <option value="Home">EMB</option>
+                            <option value="Home">Student Center</option>
+                            <option value="Home">Humanities</option>
+                            <option value="Home">Centenary</option>
+                            <option value="Home">Thuto</option>
+                            <option value="Home">Engineering 1</option>
+                            <option value="Home">Engineering 2</option>
+                            <option value="Home">Engineering 3</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="to">To</label><br>
-                        <select name="locationTo" id="to">
-                            <option value="Home">Main Gate</option>
+                        <label for="room">From: Room</label><br>
+                        <select name="locationFrom" id="room" class="form-control">
+                            <option value="Current Location">Current Location</option>
+                            <option value="Home">IT 4-1</option>
+                            <option value="Home">IT 4-2</option>
+                            <option value="Home">IT 4-3</option>
+                            <option value="Home">IT 4-4</option>
+                            <option value="Home">IT 4-5</option>
+                            <option value="Home">IT 2-23</option>
+                            <option value="Home">IT 2-24</option>
+                            <option value="Home">IT 2-25</option>
                         </select>
                     </div>
 
-                    <input class="btn btn-default" type="submit" value="Calculate Route">
+                    <div class="form-group">
+                        <label for="building">To: Building</label><br>
+                        <select name="locationFrom" id="building" class="form-control">
+                            <option value="Home">IT Building</option>
+                            <option value="Home">EMB</option>
+                            <option value="Home">Student Center</option>
+                            <option value="Home">Humanities</option>
+                            <option value="Home">Centenary</option>
+                            <option value="Home">Thuto</option>
+                            <option value="Home">Engineering 1</option>
+                            <option value="Home">Engineering 2</option>
+                            <option value="Home">Engineering 3</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="room">To: Room</label><br>
+                        <select name="locationFrom" id="room" class="form-control">
+                            <option value="Home">IT 4-1</option>
+                            <option value="Home">IT 4-2</option>
+                            <option value="Home">IT 4-3</option>
+                            <option value="Home">IT 4-4</option>
+                            <option value="Home">IT 4-5</option>
+                            <option value="Home">IT 2-23</option>
+                            <option value="Home">IT 2-24</option>
+                            <option value="Home">IT 2-25</option>
+                        </select>
+                    </div>
+<!-- 
+                    <div class="form-group">
+                        <label for="to">To</label><br>
+                        <select name="locationTo" id="to" class="form-control">
+                            <option value="Home">IT Building</option>
+                        </select>
+                    </div> -->
+
+                    <input class="btn btn-default" type="button" value="Calculate Route" onclick="calculateRoute()">
                     <input class="btn btn-default" type="button" value="Save Route">
                 </fieldset>
             </form>
@@ -74,8 +225,8 @@
             <form>
                 <fieldset>
                     <legend>Record Current Route</legend>
-                    <input class="btn btn-default" type="button" value="Start Recording Route">
-                    <input class="btn btn-default" type="button" value="Stop Recording Route">
+                    <input class="btn btn-default" type="button" value="Start Recording Route" class="form-control">
+                    <input class="btn btn-default" type="button" value="Stop Recording Route" class="form-control">
                 </fieldset>
             </form>
         </div>
@@ -94,4 +245,10 @@
                 </fieldset>
             </form>
         </div>
+
+        <div class="col-md-4 col-md-offset-2">
+            <h4>Events</h4>
+            <button class="btn btn-default">View Events</button>
+        </div>
     </div>
+</div>

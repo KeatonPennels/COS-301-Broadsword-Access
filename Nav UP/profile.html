@@ -1,0 +1,55 @@
+<nav id="nav" class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Nav UP</a>
+        </div>
+        <ul class="nav navbar-nav navigation">
+            <li ><a href="" ng-click="home()">Home</a></li>
+            <li class="active" id="profileNav" ng-show="profileNav"><a href="" ng-click="profile()">Profile</a></li>
+            <li id="navigateNav" ng-show="navigateNav"><a href="" ng-click="navigate()">Navigate</a></li>
+            <li id="poiNav" ng-show="poiNav"><a href="" ng-click="poi()">Points of Interest</a></li>
+            <li id="eventsNav" ng-show="eventsNav"><a href="">Events</a></li>
+            <li id="manageGisNav" ng-show="manageGisNav"><a href="" ng-click="manageGis()">Manage GIS</a></li>
+            <li id="manageUsersNav" ng-show="manageUsersNav"><a href="">Manage Users</a></li>
+            <li id="manageEventsNav" ng-show="manageEventsNav"><a href="" ng-click="manageEvents()">Manage Events</a></li>
+            <li id="manageLocationsNav" ng-show="manageLocationsNav"><a href="" ng-click="manageLocations()">Manage Locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Log Out</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+<h1>My Account</h1>
+     <form method="post">
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" class="form-control" value="first name of user logged in" ng-model="firstname" required />
+        </div>
+        <div class="form-group">
+            <label for="lastName">Surname</label>
+            <input type="text" id="surname" class="form-control" value="last name of user logged in" ng-model="surname" required />
+        </div>
+        <div class="form-group">
+            <label for="lastName">Email</label>
+            <input type="email" id="email" class="form-control" value="email of user logged in" ng-model="email" required />
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" value="username of user logged in" ng-model="username" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" ng-model="password" />
+        </div>
+        <!-- show what button is supposed to  do when clicked-->
+        <div class="form-group">
+            <button class="btn btn-primary" onclick="" ng-click="vm.saveUser()">Save</button>
+            <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button>
+            <a class="btn btn-secondary" ng-click="home()">Cancel</a>
+        </div>
+    </form>
+</div>
+
+
+
