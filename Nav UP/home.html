@@ -6,10 +6,12 @@
 	    <ul class="nav navbar-nav navigation">
 	        <li class="active"><a href="">Home</a></li>
 	        <li id="profile" ng-show="profile"><a href="">Profile</a></li>
+
 	        <li id="navigate" ng-show="navigate"><a ng-click="navigate()" href="">Navigate</a></li>
-	        <li id="poi" ng-show="poi"><a href="">Points of Interest</a></li>
+			<li id="poi" ng-show="poi"><a href="" ng-click="poiSection()">Points of Interest</a></li>
+
 	        <li id="events" ng-show="events"><a href="">Events</a></li>
-	        <li id="manageGis" ng-show="manageGis"><a href="" ng-click="manageGis()">Manage GIS</a></li>
+	        <li id="manageGis" ng-show="manageGis"><a href="#manageGis">Manage GIS</a></li>
 	        <li id="manageUsers" ng-show="manageUsers"><a href="">Manage Users</a></li>
 	        <li id="manageEvents" ng-show="manageEvents"><a href="">Manage Events</a></li>
 	        <li id="manageLocations" ng-show="manageLocations"><a href="" ng-click="manageLocations()">Manage Locations</a></li>
@@ -23,4 +25,5 @@
 
 		</div>	
 	</div>
-</div>
+	</div>
+</nav>
