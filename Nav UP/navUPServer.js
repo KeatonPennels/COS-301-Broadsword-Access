@@ -3,9 +3,21 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
+// var nsq = require('nsqjs');
 
 app.use(bodyParser.json());
 
+// //nsq writer
+// var write = new nsq.Writer('127.0.0.1', 4150);
+// write.connect();
+
+// write.on("closed", function()
+// {
+// 	console.log("NSQ writer closed");
+// });
+
+// //nsq reader
+// var read;
 
 var GISObjectArray = [
 						{name:"IT Building", id:1, coordinates:"1,1"}, 
@@ -33,7 +45,7 @@ var locationArray = [
 						{name:"Student Center", id:10}
 					];
 
-var userArray = [{id:1, firstname:"Munya", lastname:"Mpofu", email:"munya@gmail.com", username:"Munya", password:"1234", status:"admin"}];
+var userArray = [{id:1, fname:"Munya", sname:"Mpofu", email:"munya@gmail.com", stud_num:"u15071830", password:"1234", phone:"1234567890", status:"admin"}];
 
 app.get('/', function(request, response) 
 {
@@ -41,7 +53,7 @@ app.get('/', function(request, response)
     app.use(express.static(__dirname));
 });
 
-
+/************************************************Manage GIS**********************************************/
 
 app.get('/findGISObject', function(request, response){
 	response.json(GISObjectArray);
@@ -69,39 +81,6 @@ app.post("/editGISObject", function(request, response){
     	}
 
 });
-
-app.get('/viewLocations', function(request, response)
-{
-	response.json(locationArray);
-});
-
-app.post("/editLocation", function(request, response)
-{
-	var location = request.body;
-
-	console.log(location);
-	var edit = false;
-
-	for(var key in locationArray)
-	{
-		if(locationArray[key].id == location.id)
-		{
-			locationArray[key] = location;
-			edit = true;
-		}
-	}
-
-	if(edit == false)
-	{
-		response.send("Location edit failed!");
-	}
-	else
-	{
-		response.send("Location has been edited");
-	}
-
-});
-
 
 app.post("/addGISObject", function(request, response){
 	var GISObject = new Object();
@@ -135,6 +114,40 @@ app.post("/deleteGISObject", function(request, response){
 
 });
 
+/************************************************Manage Locations**********************************************/
+
+app.get('/viewLocations', function(request, response)
+{
+	response.json(locationArray);
+});
+
+app.post("/editLocation", function(request, response)
+{
+	var location = request.body;
+
+	console.log(location);
+	var edit = false;
+
+	for(var key in locationArray)
+	{
+		if(locationArray[key].id === location.id)
+		{
+			locationArray[key] = location;
+			edit = true;
+		}
+	}
+
+	if(edit == false)
+	{
+		response.send("Location edit failed!");
+	}
+	else
+	{
+		response.send("Location has been edited");
+	}
+
+});
+
 app.post("/addLocation", function(request, response)
 {
 	var location = new Object();
@@ -164,14 +177,14 @@ app.post("/deleteLocation", function(request, response)
 	console.log(id);
 	for(var key in locationArray)
 	{
-		if(locationArray[key].id == id)
+		if(locationArray[key].id === id)
 		{
 			locationArray.splice(key, 1);
 			deleted = true;
 		}
 	}
 
-	if(deleted == false)
+	if(deleted === false)
 	{
 		response.send("The location could not be deleted");
 	}
@@ -182,14 +195,17 @@ app.post("/deleteLocation", function(request, response)
 
 });
 
+/************************************************Users**********************************************/
+
 app.post("/registerUser", function(request, response)
 {
+	//mock functionality 
 	var user = request.body.user;
 	var exists = false;
 
 	for (var i = 0; i < userArray.length; i++) 
 	{
-		if(userArray[i].email == user.email)
+		if(userArray[i].email === user.email)
 		{
 			exists = true;
 			response.send("email");
@@ -204,28 +220,90 @@ app.post("/registerUser", function(request, response)
 		response.send("registered");
 	}
 
-	//send confirmation email
+	//intended functionality
 
-    // var transporter = nodemailer.createTransport({
-    //     service: 'Gmail',
-    //     auth: {
-    //         user: 'munyabenyera@gmail.com', // Your email id
-    //         pass: 'password' // Your password
-    //     }
-    // });
+	// //send user object to user module via NSQ
+	// var addUserRequest = new Object();
+	// addUserRequest.src = "Access";
+	// addUserRequest.dest = "Users";
+	// addUserRequest.msgType = "request";
+	// addUserRequest.queryType = "insert";
+	// addUserRequest.content = new Object();
+	// addUserRequest.content.fname = user.fname;
+	// addUserRequest.content.sname = user.sname;
+	// addUserRequest.content.email = user.email;
+	// addUserRequest.content.password = user.password;
+	// addUserRequest.content.stud_num = user.stud_num;
+	// addUserRequest.content.phone = user.phone;
 
+	// var addUserRequestJson = JSON.stringify(addUserRequest);
+
+	// //send request
+	// write.on("ready", function()
+	// {
+	// 	write.publish("users", addUserRequestJson);
+	// });
+
+	// //receive respose from user module NSQ
+	// read = new nsq.Reader('user', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
+	// read.connect();
+
+	// read.on("message", function(msg)
+	// {
+	// 	console.log("Recieved user registration confirmation: " + msg.id + msg.body.toString());
+	// 	msg.finish();
+	// });
+
+	// read.on("closed", function()
+	// {
+	// 	console.log("NSQ reader closed");
+	// });
+
+	// //send confirmation email
+	// var notificationsRequest = new Object()
+	// notificationsRequest.src = "Access";
+	// notificationsRequest.dest = "Users";
+	// notificationsRequest.msgType = "request";
+	// notificationsRequest.queryType = "addUser";
+	// notificationsRequest.content = new Object();
+	// notificationsRequest.content.email = user.email;
+
+	// //send email address to notfications module
+	// var notificationsRequestJson = JSON.stringify(notificationsRequest);
+
+	// write.on("ready", function()
+	// {
+	// 	write.publish("notifications", notificationsRequestJson);
+	// });
+
+	// //receive response from notifications module
+	// read = new nsq.Reader('notifications', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
+	// read.connect();
+
+	// read.on("message", function(msg)
+	// {
+	// 	console.log("Recieved regitration notification confirmation: " + msg.id + msg.body.toString());
+	// 	msg.finish();
+	// });
+
+	// read.on("closed", function()
+	// {
+	// 	console.log("NSQ reader closed");
+	// });
 });
 
 app.post("/login", function(request, response)
 {
-	var username = request.body.username;
+
+	//mock functionality
+	var stud_num = request.body.stud_num;
 	var password = request.body.password;
 	var loginObj = new Object();
 	var exists = false;
 
 	for (var i = 0; i < userArray.length; i++) 
 	{
-		if(userArray[i].username == username && userArray[i].password == password)
+		if(userArray[i].stud_num == stud_num && userArray[i].password == password)
 		{
 			exists = true;
 			var user = userArray[i].id + "-" + userArray[i].status;
@@ -238,9 +316,43 @@ app.post("/login", function(request, response)
 	{
 		response.send("login failed");
 	}
+
+	//intended functionality
+
+	// //send user object to user module via NSQ
+	// var getUserRequest = new Object();
+	// getUserRequest.src = "Access";
+	// getUserRequest.dest = "Users";
+	// getUserRequest.msgType = "request";
+	// getUserRequest.queryType = "getUser";
+	// getUserRequest.content = new Object();
+	// getUserRequest.content.stud_num = stud_num;
+
+	// var getUserRequestJson = JSON.stringify(getUserRequest);
+
+	// //send request
+	// write.on("ready", function()
+	// {
+	// 	write.publish("users", getUserRequestJson);
+	// });
+
+	// //receive respose from user module NSQ
+	// read = new nsq.Reader('user', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
+	// read.connect();
+
+	// read.on("message", function(msg)
+	// {
+	// 	console.log("Recieved login confirmation: " + msg.id + msg.body.toString());
+	// 	msg.finish();
+	// });
+
+	// read.on("closed", function()
+	// {
+	// 	console.log("NSQ reader closed");
+	// });
 });
 
-app.post("/profile", function(request, response)
+app.post("/viewProfile", function(request, response)
 {
 	var id = request.body.id;
 	console.log(id);
@@ -258,6 +370,45 @@ app.post("/profile", function(request, response)
 	{
 		response.send("user not found");
 	}
+});
+
+/************************************************GIS**********************************************/
+app.post("navigateToLocation", function()
+{
+	var from = request.body.from;
+	var to = request.body.to;
+
+	// var getRouteRequest = new Object();
+	// getRouteRequest.src = "Access";
+	// getRouteRequest.dest = "Users";
+	// getRouteRequest.msgType = "request";
+	// getRouteRequest.queryType = "getRoute";
+	// getRouteRequest.content = new Object();
+	// getRouteRequest.content.from = from;
+	// getRouteRequest.content.to = to;
+
+	// var getRouteRequestJson = JSON.stringify(getRouteRequest);
+
+	// //send request
+	// write.on("ready", function()
+	// {
+	// 	write.publish("gis", getRouteRequestJson);
+	// });
+
+	// //receive respose from user module NSQ
+	// read = new nsq.Reader('gis', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
+	// read.connect();
+
+	// read.on("message", function(msg)
+	// {
+	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	msg.finish();
+	// });
+
+	// read.on("closed", function()
+	// {
+	// 	console.log("NSQ reader closed");
+	// });
 });
 
 var port = process.argv[process.argv.length - 1];

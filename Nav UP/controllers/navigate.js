@@ -2,6 +2,7 @@ angular.module('navUP').controller('navigateController',
 ['$scope', '$location', '$routeParams',
 function ($scope, $location, $routeParams) 
 {
+
 	var user = $routeParams.user.split(",");
     var id = user[0];
     var status = user[1];

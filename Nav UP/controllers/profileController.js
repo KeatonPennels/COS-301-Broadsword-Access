@@ -57,7 +57,7 @@ function ($scope, $location, $routeParams, $http)
         $location.path("/manageGIS" + user);
     }
 
-    $http.post("profile",
+    $http.post("viewProfile",
     {
         id:id
     })
@@ -73,11 +73,12 @@ function ($scope, $location, $routeParams, $http)
             {
                 var user = response.data;
 
-                $scope.firstname = user.firstname;
-                $scope.surname = user.surname;
+                $scope.fname = user.fname;
+                $scope.sname = user.sname;
                 $scope.email = user.email;
-                $scope.username = user.username;
+                $scope.stud_num = user.stud_num;
                 $scope.password = user.password;
+                $scope.phone = user.phone;
             }
         }
     });

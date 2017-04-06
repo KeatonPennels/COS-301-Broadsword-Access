@@ -17,7 +17,7 @@ function ($scope, $location, $http)
 		{
 			$http.post("/login",
 			{
-				username: $scope.username, password: $scope.password
+				stud_num: $scope.stud_num, password: $scope.password
 			})
 			.then(function(response)
 			{
@@ -42,11 +42,13 @@ function ($scope, $location, $http)
 	{
 		var user = new Object();
 		user.id = null;
-		user.firstname = $scope.firstname;
-		user.surname = $scope.surname;
-		user.email = $scope.email;
-		user.username = $scope.username;
+		user.fname = $scope.fname;
+		user.sname = $scope.sname;
+		user.stud_num = $scope.stud_num;
+		user.email = $scope.email;	
+		user.phone = $scope.phone;
 		user.status = "user";
+
 		if($scope.password != $scope.confirmPassword)
 		{
 			alert("The password and confirmed password do not match");

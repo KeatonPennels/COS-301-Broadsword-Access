@@ -2,51 +2,61 @@ angular.module('navUP').controller('manageLocationsController',
 ['$scope', '$location', '$routeParams', "$http",
 function ($scope, $location, $routeParams, $http) 
 {
-	var status = $routeParams.status;
+	var user = $routeParams.user.split(",");
+    var id = user[0];
+    var status = user[1];
 
-	if(status === "guest")
-	{
-		$scope.navigate = true;
-	}
-	
-	if(status === "user" || status === "admin")
-	{
-		$scope.profile = true;
-		$scope.poi = true;
-		$scope.events = true;
-	}
+    $scope.navigateNav = true;
 
-	if(status === "admin")
-	{
-		$scope.manageGis = true;
-		$scope.manageUsers = true;
-		$scope.manageLocations = true;
-		$scope.manageEvents = true;
-	}
+    if(status == "user" || status == "admin")
+    {
+        $scope.profileNav = true;
+        $scope.poiNav = true;
+        $scope.eventsNav= true;
+    }
 
-$scope.navigate = function()
-	{
-		$location.path("/navigate" + status);
-	}
-	$scope.manageLocations = function()
-	{
-		$location.path("/manageLocations" + status);
-	}
+    if(status == "admin")
+    {
+        $scope.manageGisNav = true;
+        $scope.manageUsersNav = true;
+        $scope.manageLocationsNav = true;
+        $scope.manageEventsNav = true;
+    }
 
-	$scope.poi = function()
-	{
-		$location.path("/poi" + status);
-	}
+    $scope.home = function()
+    {
+        $location.path("/home" + user);
+    }
+    
+    $scope.profile = function()
+    {
+        $location.path("/profile" + user);
+    }
 
-	$scope.manageEvents = function()
-	{
-		$location.path("/manageEvents" + status);
-	}
+    $scope.navigate = function()
+    {
+        $location.path("/navigate" + user);
+    }
+    $scope.manageLocations = function()
+    {
+        $location.path("/manageLocations" + user);
+    }
 
-	$scope.manageGis = function()
-	{
-		$location.path("/manageGIS" + status);
-	}
+    $scope.poi = function()
+    {
+        $location.path("/poi" + user);
+    }
+
+    $scope.manageEvents = function()
+    {
+        $location.path("/manageEvents" + user);
+    }
+
+    $scope.manageGis = function()
+    {
+        $location.path("/manageGIS" + user);
+    }
+    
 	$scope.ViewLocations = true;
 
 	$http.get("/viewLocations").then(function(response)

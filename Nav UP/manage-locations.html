@@ -3,20 +3,20 @@
 		<div class="navbar-header">
 	        <a class="navbar-brand" href="#">Nav UP</a>
 	    </div>
-	    <ul class="nav navbar-nav navigation">
-	        <li class="active"><a href="">Home</a></li>
-	        <li id="profile" ng-show="profile"><a href="">Profile</a></li>
-	        <li id="navigate" ng-show="navigate"><a ng-click="navigate()" href="">Navigate</a></li>
-	        <li id="poi" ng-show="poi"><a href=""  ng-click="poi()">Points of Interest</a></li>
-	        <li id="events" ng-show="events"><a href="">Events</a></li>
-	        <li id="manageGis" ng-show="manageGis"><a href="" ng-click="manageGis()">Manage GIS</a></li>
-	        <li id="manageUsers" ng-show="manageUsers"><a href="">Manage Users</a></li>
-	        <li id="manageEvents" ng-show="manageEvents"><a href="" ng-click="manageEvents()">Manage Events</a></li>
-	        <li id="manageLocations" ng-show="manageLocations"><a href="" ng-click="manageLocations()">Manage Locations</a></li>
-	    </ul>
-	    <ul class="nav navbar-nav navbar-right">
-			<li><a href="/">Log Out</a></li>
-	    </ul>
+	     <ul class="nav navbar-nav navigation">
+            <li ><a href="" ng-click="home()">Home</a></li>
+            <li id="profileNav" ng-show="profileNav"><a href="" ng-click="profile()">Profile</a></li>
+            <li id="navigateNav" ng-show="navigateNav"><a href="" ng-click="navigate()">Navigate</a></li>
+            <li id="poiNav" ng-show="poiNav"><a href="" ng-click="poi()">Points of Interest</a></li>
+            <li id="eventsNav" ng-show="eventsNav"><a href="">Events</a></li>
+            <li id="manageGisNav" ng-show="manageGisNav"><a href="" ng-click="manageGis()">Manage GIS</a></li>
+            <li id="manageUsersNav" ng-show="manageUsersNav"><a href="">Manage Users</a></li>
+            <li id="manageEventsNav" ng-show="manageEventsNav"><a href="" ng-click="manageEvents()">Manage Events</a></li>
+            <li class="active" id="manageLocationsNav" ng-show="manageLocationsNav"><a href="" ng-click="manageLocations()">Manage Locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Log Out</a></li>
+        </ul>
     </div>
 </nav>
 
