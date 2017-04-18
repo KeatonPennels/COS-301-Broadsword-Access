@@ -11,6 +11,6 @@ Repository for the third assignment of COS 301, team Broadsword-Access.
 - [:octocat: Munyaradzi Mpofu](https://github.com/Bench96)
 - [:octocat: Joshua Cilliers](https://github.com/JoshC117)
 - [:octocat: Stephanie Groutsch](https://github.com/SteffAsterix)
-- [:octocat: ](https://github.com/)
+- [:octocat: Brent Walsh](https://github.com/bawalsh)
 - [:octocat: ](https://github.com/)
 
