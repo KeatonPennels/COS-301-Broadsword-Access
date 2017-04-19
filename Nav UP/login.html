@@ -1,27 +1,52 @@
 <div class="container-fluid">
-    <div class="jumbotron">
-        <h1>Nav UP</h1>
+     <div class="row ">
+        <div class="col-xs-10 col-xs-offset-1 ">
+        <div class="jumbotron loginTop">
+             
+                <h1 class="loginTop">NavUP</h1>
+          
+        </div>
+     </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <center>
+        <img src="img\uniLogo.png" alt="Tuks logo"> 
+        </center>
+
+
+    </div>
+
+    <br>
+
+
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-4">
             <form id="login" name="loginForm">
-                <fieldset>
-                    <legend>Log In</legend>
+
                 
                     <div class="form-group">
-                        <label for="stud_num">Student Number / EMPLID</label>
-                        <input type="text" class="form-control" id="stud_num" name="stud_num" ng-model="stud_num">
+                        <label for="stud_num" class="loginLabel ">Student Number / EMPLID</label>
+                        <input type="text" class="form-control loginInput" id="stud_num" name="stud_num" ng-model="stud_num"  placeholder="Username">
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" ng-model="password">
+                        <label for="password" class="loginLabel">Password</label>
+                        <input type="password" class="form-control loginInput" id="password" name="password" placeholder="Password" ng-model="password">
                     </div>
 
-                    <input ng-disabled="loginForm.$invalid" class="btn btn-default" type="button" value="User login" ng-click="login('user')">
-                </fieldset>
+          
+                         <input ng-disabled="loginForm.$invalid" class="btn btn-default pull-right" type="button" value="User login" ng-click="login('user')">
+ 
             </form>
-            <button class="btn btn-default pull-right" ng-click="register()">Click to Register</button>
-            <button class="btn btn-default pull-right" ng-click="login('guest')">Guest login</button>
         </div>
-    </div>
+
+</div>
+    <div class="row">
+            <div class="col-xs-6 col-xs-offset-5">
+
+                <button class="btn-link pull-right" ng-click="register()">Click to Register</button>
+                <button class=" btn-link pull-right" ng-click="login('guest')">Guest login</button>
+            </div>
+            </div>
+       
+    
 </div>
