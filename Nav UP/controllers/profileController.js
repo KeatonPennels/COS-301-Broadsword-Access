@@ -67,7 +67,7 @@ function ($scope, $location, $routeParams, $http)
     $scope.password = null;
     $scope.phone = null;
 
-    $http.post("/viewProfile",
+    $http.post("/getUser",
     {
         studentNumber:stud_num
     })
@@ -128,26 +128,4 @@ function ($scope, $location, $routeParams, $http)
             $location.path("/");
         });
     }
-    
-    // function saveUser() {
-
-    //     UserService.Update(vm.user)
-    //         .then(function () {
-    //             FlashService.Success('User updated');
-    //         })
-    //         .catch(function (error) {
-    //             FlashService.Error(error);
-    //         });
-    // }
-
-    // function deleteUser() {
-    //     UserService.Delete(vm.user._id)
-    //         .then(function () {
-    //             // log user out
-    //             $window.location = '/login';
-    //         })
-    //         .catch(function (error) {
-    //             FlashService.Error(error);
-    //         });
-    // }
 }]);
