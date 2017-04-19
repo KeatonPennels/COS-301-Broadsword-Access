@@ -57,10 +57,63 @@ app.get('/', function(request, response)
 
 app.get('/findGISObject', function(request, response){
 	response.json(GISObjectArray);
+
+	
 });
 
 app.get('/findCurrentCoordinates', function(request, response){
 	response.json(GISObjectArray[1].coordinates);
+	// Regarding the full functionality here the communication spec specifies that the device's MAC address should be passed through in the nsq message,
+	// however this isn't something acheivable in JS as far as I understand as it would entail disabling nearly all security for the browser being used.
+    // Furthermore while this can be done using activeX objects, the clients would all need Windows Management Instrumentation installed as a prereq.
+	// Below is a code block that in theory should return the MAC addresses for the devices current connections.
+
+	/*var macAddress = "";
+    var ipAddress = "";
+    var computerName = "";
+    var wmi = GetObject("winmgmts:{impersonationLevel=impersonate}");
+    e = new Enumerator(wmi.ExecQuery("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = True"));
+    for(; !e.atEnd(); e.moveNext()) {
+        var s = e.item(); 
+        macAddress = s.MACAddress;
+        ipAddress = s.IPAddress(0);
+        computerName = s.DNSHostName;
+    }
+*/
+
+	// var getLocation = new Object();
+	// getLocation.src = "Access";
+	// getLocation.dest = "Data";
+	// getLocation.msgType = "request";
+	// getLocation.queryType = "getLocation";
+	// getLocation.content = new Object();
+	// getLocation.content.mac = ipAddress;
+	
+
+	// var getLocationRequestJson = JSON.stringify(getLocation);
+
+	// //send request
+	// write.on("ready", function()
+	// {
+	// 	write.publish("data", getLocationRequestJson);
+	// });
+
+	// //receive respose from user module NSQ
+	// read = new nsq.Reader('data', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
+	// read.connect();
+
+	// read.on("message", function(msg)
+	// {
+	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	msg.finish();
+	// });
+
+	// read.on("closed", function()
+	// {
+	// 	console.log("NSQ reader closed");
+	// });
+
+
 });
 
 app.post("/editGISObject", function(request, response){
@@ -80,7 +133,42 @@ app.post("/editGISObject", function(request, response){
 		response.send("GIS Object has been edited");
     	}
 
+    // var updateLocation = new Object();
+	// updateLocation.src = "Access";
+	// updateLocation.dest = "GIS";
+	// updateLocation.msgType = "request";
+	// updateLocation.queryType = "updateLocation";
+	// updateLocation.content = new Object();
+	// updateLocation.content.from = request.body.from;
+	// updateLocation.content.to = request.body.to;
+	
+
+	// var updateLocationRequestJson = JSON.stringify(updateLocation);
+
+	// //send request
+	// write.on("ready", function()
+	// {
+	// 	write.publish("gis", updateLocationRequestJson);
+	// });
+
+	// //receive respose from user module NSQ
+	// read = new nsq.Reader('gis', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
+	// read.connect();
+
+	// read.on("message", function(msg)
+	// {
+	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	msg.finish();
+	// });
+
+	// read.on("closed", function()
+	// {
+	// 	console.log("NSQ reader closed");
+	// });
+
 });
+
+
 
 app.post("/addGISObject", function(request, response){
 	var GISObject = new Object();
@@ -93,6 +181,39 @@ app.post("/addGISObject", function(request, response){
 	catch(error){
 		response.send("The GIS Object could not be added");
 	}
+	// INTENDED FUNCTIONALITY
+
+	// var addLocation = new Object();
+	// addLocation.src = "Access";
+	// addLocation.dest = "GIS";
+	// addLocation.msgType = "request";
+	// addLocation.queryType = "addLocation";
+	// addLocation.content = new Object();
+	// addLocation.content.location = request.body.name;
+	
+
+	// var addLocationRequestJson = JSON.stringify(addLocation);
+
+	// //send request
+	// write.on("ready", function()
+	// {
+	// 	write.publish("gis", addLocationRequestJson);
+	// });
+
+	// //receive respose from user module NSQ
+	// read = new nsq.Reader('gis', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
+	// read.connect();
+
+	// read.on("message", function(msg)
+	// {
+	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	msg.finish();
+	// });
+
+	// read.on("closed", function()
+	// {
+	// 	console.log("NSQ reader closed");
+	// });
 });
 
 app.post("/deleteGISObject", function(request, response){
@@ -111,6 +232,38 @@ app.post("/deleteGISObject", function(request, response){
 	else{
 		response.send("The GIS Object was successfully deleted");
     	}
+
+    // var deleteLocation = new Object();
+	// deleteLocation.src = "Access";
+	// deleteLocation.dest = "GIS";
+	// deleteLocation.msgType = "request";
+	// deleteLocation.queryType = "deleteLocation";
+	// deleteLocation.content = new Object();
+	// deleteLocation.content.id = id;
+	
+
+	// var deleteLocationRequestJson = JSON.stringify(deleteLocation);
+
+	// //send request
+	// write.on("ready", function()
+	// {
+	// 	write.publish("gis", deleteLocationRequestJson);
+	// });
+
+	// //receive respose from user module NSQ
+	// read = new nsq.Reader('gis', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
+	// read.connect();
+
+	// read.on("message", function(msg)
+	// {
+	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	msg.finish();
+	// });
+
+	// read.on("closed", function()
+	// {
+	// 	console.log("NSQ reader closed");
+	// });
 
 });
 
