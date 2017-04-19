@@ -3,7 +3,7 @@ angular.module('navUP').controller('poiController',
         function ($scope, $location, $routeParams)
         {
             var user = $routeParams.user.split(",");
-            var id = user[0];
+            var stud_num = user[0];
             var status = user[1];
 
             $scope.navigateNav = true;
@@ -37,24 +37,25 @@ angular.module('navUP').controller('poiController',
             {
                 $location.path("/navigate" + user);
             }
-            $scope.manageLocations = function()
-            {
-                $location.path("/manageLocations" + user);
-            }
 
             $scope.poi = function()
             {
                 $location.path("/poi" + user);
             }
 
-            $scope.manageEvents = function()
+            $scope.manageUsers = function()
             {
-                $location.path("/manageEvents" + user);
+                $location.path("/manageUsers" + user);
             }
 
             $scope.manageGis = function()
             {
                 $location.path("/manageGIS" + user);
+            }
+
+            $scope.manageLocations = function()
+            {
+                $location.path("/manageLocations" + user);
             }
 
             // poi stuff

@@ -66,15 +66,8 @@ function ($scope, $location, $http)
 		{
 			if(response.status == 200)
 			{
-				if(response.data == "registered")
-				{
-					alert("You have been successfully registered! You may now log in");
-					$location.path("/");
-				}
-				else if(response.data == "email")
-				{
-					alert("A user with this email address already exists!");
-				}
+				alert("You have been successfully registered! You may now log in");
+				$location.path("/");
 			}
 			
 		})

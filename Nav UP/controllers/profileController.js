@@ -3,7 +3,7 @@
 function ($scope, $location, $routeParams, $http) 
 {
     var user = $routeParams.user.split(",");
-    var id = user[0];
+    var stud_num = user[0];
     var status = user[1];
 
     $scope.navigateNav = true;
@@ -37,19 +37,15 @@ function ($scope, $location, $routeParams, $http)
     {
         $location.path("/navigate" + user);
     }
-    $scope.manageLocations = function()
-    {
-        $location.path("/manageLocations" + user);
-    }
 
     $scope.poi = function()
     {
         $location.path("/poi" + user);
     }
 
-    $scope.manageEvents = function()
+    $scope.manageUsers = function()
     {
-        $location.path("/manageEvents" + user);
+        $location.path("/manageUsers" + user);
     }
 
     $scope.manageGis = function()
@@ -57,9 +53,23 @@ function ($scope, $location, $routeParams, $http)
         $location.path("/manageGIS" + user);
     }
 
-    $http.post("viewProfile",
+    $scope.manageLocations = function()
     {
-        id:id
+        $location.path("/manageLocations" + user);
+    }
+
+    $scope.profileForm = true;
+
+    $scope.fname = null;
+    $scope.sname = null;
+    $scope.email = null;
+    $scope.stud_num = null;
+    $scope.password = null;
+    $scope.phone = null;
+
+    $http.post("/viewProfile",
+    {
+        studentNumber:stud_num
     })
     .then(function(response)
     {
@@ -71,37 +81,73 @@ function ($scope, $location, $routeParams, $http)
             }
             else
             {
-                var user = response.data;
+                var userObj = response.data;
 
-                $scope.fname = user.fname;
-                $scope.sname = user.sname;
-                $scope.email = user.email;
-                $scope.stud_num = user.stud_num;
-                $scope.password = user.password;
-                $scope.phone = user.phone;
+                $scope.fname = userObj.fname;
+                $scope.sname = userObj.sname;
+                $scope.email = userObj.email;
+                $scope.stud_num = userObj.stud_num;
+                $scope.password = userObj.password;
+                $scope.phone = userObj.phone;
             }
         }
     });
 
-    function saveUser() {
+    $scope.saveProfile = function()
+    {
+        var userObj = new Object();
+        userObj.fname = $scope.fname;
+        userObj.sname = $scope.sname;
+        userObj.email = $scope.email;
+        userObj.stud_num = $scope.stud_num;
+        userObj.password = $scope.password;
+        userObj.phone = $scope.phone;
 
-        UserService.Update(vm.user)
-            .then(function () {
-                FlashService.Success('User updated');
-            })
-            .catch(function (error) {
-                FlashService.Error(error);
-            });
+        //send rewuest
+        $http.post("/saveProfile",
+        {
+            user:userObj
+        })
+        .then(function(response)
+        {
+            alert(response.data);
+
+            $location.path("/home" + user);
+        });
     }
 
-    function deleteUser() {
-        UserService.Delete(vm.user._id)
-            .then(function () {
-                // log user out
-                $window.location = '/login';
-            })
-            .catch(function (error) {
-                FlashService.Error(error);
-            });
+    $scope.deleteProfile = function()
+    {
+        $http.post("/deleteProfile",
+        {
+            studentNumber: $scope.stud_num
+        })
+        .then(function(response)
+        {
+            alert(response.data);
+            $location.path("/");
+        });
     }
+    
+    // function saveUser() {
+
+    //     UserService.Update(vm.user)
+    //         .then(function () {
+    //             FlashService.Success('User updated');
+    //         })
+    //         .catch(function (error) {
+    //             FlashService.Error(error);
+    //         });
+    // }
+
+    // function deleteUser() {
+    //     UserService.Delete(vm.user._id)
+    //         .then(function () {
+    //             // log user out
+    //             $window.location = '/login';
+    //         })
+    //         .catch(function (error) {
+    //             FlashService.Error(error);
+    //         });
+    // }
 }]);

@@ -3,7 +3,7 @@ angular.module('navUP').controller('manageLocationsController',
 function ($scope, $location, $routeParams, $http) 
 {
 	var user = $routeParams.user.split(",");
-    var id = user[0];
+    var stud_num = user[0];
     var status = user[1];
 
     $scope.navigateNav = true;
@@ -23,7 +23,7 @@ function ($scope, $location, $routeParams, $http)
         $scope.manageEventsNav = true;
     }
 
-    $scope.home = function()
+	$scope.home = function()
     {
         $location.path("/home" + user);
     }
@@ -37,24 +37,25 @@ function ($scope, $location, $routeParams, $http)
     {
         $location.path("/navigate" + user);
     }
-    $scope.manageLocations = function()
-    {
-        $location.path("/manageLocations" + user);
-    }
 
     $scope.poi = function()
     {
         $location.path("/poi" + user);
     }
 
-    $scope.manageEvents = function()
+    $scope.manageUsers = function()
     {
-        $location.path("/manageEvents" + user);
+        $location.path("/manageUsers" + user);
     }
 
     $scope.manageGis = function()
     {
         $location.path("/manageGIS" + user);
+    }
+
+    $scope.manageLocations = function()
+    {
+        $location.path("/manageLocations" + user);
     }
     
 	$scope.ViewLocations = true;

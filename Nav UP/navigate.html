@@ -4,14 +4,12 @@
             <a class="navbar-brand" href="#">Nav UP</a>
         </div>
         <ul class="nav navbar-nav navigation">
-            <li ><a href="" ng-click="home()">Home</a></li>
+            <li><a href="" ng-click="home()">Home</a></li>
             <li id="profileNav" ng-show="profileNav"><a href="" ng-click="profile()">Profile</a></li>
             <li class="active" id="navigateNav" ng-show="navigateNav"><a href="" ng-click="navigate()">Navigate</a></li>
             <li id="poiNav" ng-show="poiNav"><a href="" ng-click="poi()">Points of Interest</a></li>
-            <li id="eventsNav" ng-show="eventsNav"><a href="">Events</a></li>
             <li id="manageGisNav" ng-show="manageGisNav"><a href="" ng-click="manageGis()">Manage GIS</a></li>
-            <li id="manageUsersNav" ng-show="manageUsersNav"><a href="">Manage Users</a></li>
-            <li id="manageEventsNav" ng-show="manageEventsNav"><a href="" ng-click="manageEvents()">Manage Events</a></li>
+            <li id="manageUsersNav" ng-show="manageUsersNav"><a href="" ng-click="manageUsers()">Manage Users</a></li>
             <li id="manageLocationsNav" ng-show="manageLocationsNav"><a href="" ng-click="manageLocations()">Manage Locations</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -25,102 +23,16 @@
 	<div class="row">
         <div class="col-md-6 col-md-offset-3">
         	<div id="map" style="height: 500px;"></div>
-            <script type="text/javascript">
-            var map;
-    
-            function initMap() {
-
-            //up campus coordinates -25.752163658, 28.224499102
-            //it building coordinates: -25.755627, 28.232553
-            //emb building coordinates: -25.7552303, 28.2324397
-
-            map = new google.maps.Map(document.getElementById('map'), {
-                  center: {lat: -25.755033333333333, lng: 28.23083333333333},
-                  zoom: 16
-                });
-            }
-
-            function getLocation() {
-                var marker = new google.maps.Marker({
-                position: {lat: -25.7552303, lng: 28.2324397},
-                map: map,
-                title: "My Location",
-
-                });  
-
-                map.setZoom(20);
-                map.panTo(marker.position); 
-            } 
-
-            function calculateRoute() {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var directionsService = new google.maps.DirectionsService();
-                    var directionsDisplay = new google.maps.DirectionsRenderer();
-                    var pos = {
-                      lat: position.coords.latitude,
-                      lng: position.coords.longitude
-                    };
-
-                    var start = new google.maps.LatLng(-25.7552303, 28.2324397);
-                    var end = new google.maps.LatLng(-25.755846, 28.233151);
-                    
-                    var bounds = new google.maps.LatLngBounds();
-                    bounds.extend(start);
-                    bounds.extend(end);
-                    map.fitBounds(bounds);
-                    var request = {
-                        origin: start,
-                        destination: end,
-                        travelMode: google.maps.TravelMode.WALKING
-                    };
-                    directionsService.route(request, function (response, status) 
-                    {
-                        if (status == google.maps.DirectionsStatus.OK) 
-                        {
-                            directionsDisplay.setDirections(response);
-                            directionsDisplay.setMap(map);
-                        } 
-                        else 
-                        {
-                            alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
-                        }
-                    });
-                });
-            }
-
-            initMap();
-            
-            </script>
         </div>
    </div>
 
 
     <div class="row">
-        <div class="col-md-4 col-md-offset-2">
-            <form class="newRoute">
-                <fieldset>
-                    <legend>Route Managment and Navigation</legend>
-                
-                    <div class="form-group">
-                        <label for="route">Route</label><br>
-                        <select id="route" class="form-control">
-                            <option value="Home">Main Gate To EBN</option>
-                            <option value="Home">IT Building from Engineering Gate</option>
-                        </select>
-                    </div>
-
-                    <input class="btn btn-default" type="button" value="Use Route to Navigate">
-                    <input class="btn btn-default" type="button" value="Modify Route">
-                    <input class="btn btn-default" type="button" value="Delete Route">
-                </fieldset>
-            </form>
-            </div>
-
-           <div class="col-md-4 col-md-offset-1"> 
+        <div class="col-md-4 col-md-offset-1"> 
             <form class="newRoute" method="GET">
                 <fieldset>
                     <legend>Calculate Route</legend>
-                    <div class="btn btn-default" onclick="getLocation()">Get Current Position</div>
+                    <div class="btn btn-default" ng-click="getLocation()">Get Current Position</div>
                     <div class="form-group">
                         <label for="building">From: Building</label><br>
                         <select name="locationFrom" id="building" class="form-control">
@@ -188,21 +100,8 @@
                         </select>
                     </div> -->
 
-                    <input class="btn btn-default" type="button" value="Calculate Route" onclick="calculateRoute()">
+                    <input class="btn btn-default" type="button" value="Calculate Route" ng-click="calculateRoute()">
                     <input class="btn btn-default" type="button" value="Save Route">
-                </fieldset>
-            </form>
-        </div>
-    </div>
-
-
-     <div class="row" style="margin-top:5%;">
-        <div class="col-md-4 col-md-offset-2">
-            <form>
-                <fieldset>
-                    <legend>Record Current Route</legend>
-                    <input class="btn btn-default" type="button" value="Start Recording Route" class="form-control">
-                    <input class="btn btn-default" type="button" value="Stop Recording Route" class="form-control">
                 </fieldset>
             </form>
         </div>
@@ -222,9 +121,5 @@
             </form>
         </div>
 
-        <div class="col-md-4 col-md-offset-2">
-            <h4>Events</h4>
-            <button class="btn btn-default">View Events</button>
-        </div>
     </div>
 </div>

@@ -38,25 +38,10 @@ navUP.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
         templateUrl: "manage-locations.html",
         controller: "manageLocationsController"
     })
-    .when("/manageLocations:user",
+    .when("/manageUsers:user", 
     {
-        templateUrl: "manage-locations.html",
-        controller: "manageLocationsController"
-    })
-    .when("/manageEvents:user", 
-    {
-        templateUrl: "manageEvents.html",
-        controller: "manageEventsController"
-    })
-    .when("/addEvent",
-    {
-        templateUrl: "addEvent.html",
-        controller: "authenticateController"
-    })
-    .when("/removeEvent",
-    {
-        templateUrl: "removeEvent.html",
-        controller: "authenticateController"
+        templateUrl: "manageUsers.html",
+        controller: "manageUsersController"
     })
     .when("/poi:user",
     {
