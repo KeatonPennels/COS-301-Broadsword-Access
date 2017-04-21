@@ -3,8 +3,6 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
-var arp = require('node-arp');
-
 // var nsq = require('nsqjs');
 
 app.use(bodyParser.json());
@@ -106,7 +104,7 @@ app.get('/findCurrentCoordinates', function(request, response){
 
 	// read.on("message", function(msg)
 	// {
-	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	console.log("Recieved location: " + msg.id + msg.body.toString());
 	// 	msg.finish();
 	// });
 
@@ -159,7 +157,7 @@ app.post("/editGISObject", function(request, response){
 
 	// read.on("message", function(msg)
 	// {
-	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	console.log("Location edited: " + msg.id + msg.body.toString());
 	// 	msg.finish();
 	// });
 
@@ -208,7 +206,7 @@ app.post("/addGISObject", function(request, response){
 
 	// read.on("message", function(msg)
 	// {
-	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	console.log("GIS Object added: " + msg.id + msg.body.toString());
 	// 	msg.finish();
 	// });
 
@@ -258,7 +256,7 @@ app.post("/deleteGISObject", function(request, response){
 
 	// read.on("message", function(msg)
 	// {
-	// 	console.log("Recieved route: " + msg.id + msg.body.toString());
+	// 	console.log("GIS Object deleted: " + msg.id + msg.body.toString());
 	// 	msg.finish();
 	// });
 
@@ -360,10 +358,10 @@ app.post("/registerUser", function(request, response)
 
 	for (var i = 0; i < userArray.length; i++) 
 	{
-		if(userArray[i].email == user.email)
+		if(userArray[i].email === user.email)
 		{
 			exists = true;
-			response.send("This email address is already in use!");
+			response.send("email");
 		}	
 	}
 
@@ -372,7 +370,7 @@ app.post("/registerUser", function(request, response)
 		userArray.push(user);
 		userArray[userArray.length - 1].id = userArray.length;
 		console.log(userArray[userArray.length - 1]);
-		response.send("You have been successfully registered! You may now log in");
+		response.send("registered");
 	}
 
 	//intended functionality
@@ -384,11 +382,12 @@ app.post("/registerUser", function(request, response)
 	// addUserRequest.msgType = "request";
 	// addUserRequest.queryType = "insert";
 	// addUserRequest.content = new Object();
-	// addUserRequest.content.name = user.fname;
-	// addUserRequest.content.surname = user.sname;
+	// addUserRequest.content.fname = user.fname;
+	// addUserRequest.content.sname = user.sname;
 	// addUserRequest.content.email = user.email;
 	// addUserRequest.content.password = user.password;
-	// addUserRequest.content.studentNumber = user.stud_num;
+	// addUserRequest.content.stud_num = user.stud_num;
+	// addUserRequest.content.phone = user.phone;
 
 	// var addUserRequestJson = JSON.stringify(addUserRequest);
 
@@ -460,7 +459,7 @@ app.post("/login", function(request, response)
 		if(userArray[i].stud_num == stud_num && userArray[i].password == password)
 		{
 			exists = true;
-			var user = userArray[i].stud_num + "-" + userArray[i].status;
+			var user = userArray[i].id + "-" + userArray[i].status;
 
 			response.send(user);
 		}
@@ -480,7 +479,7 @@ app.post("/login", function(request, response)
 	// getUserRequest.msgType = "request";
 	// getUserRequest.queryType = "getUser";
 	// getUserRequest.content = new Object();
-	// getUserRequest.content.studentNumber = stud_num;
+	// getUserRequest.content.stud_num = stud_num;
 
 	// var getUserRequestJson = JSON.stringify(getUserRequest);
 
@@ -506,341 +505,28 @@ app.post("/login", function(request, response)
 	// });
 });
 
-app.post("/saveProfile", function(request, response)
+app.post("/viewProfile", function(request, response)
 {
-	//mock functionality
-	var user = request.body.user;
-
-	for (var i = 0; i < userArray.length; i++) 
-	{
-		if(userArray[i].stud_num == user.stud_num)
-		{
-			exists = true;
-
-			userArray[i].fname = user.fname;
-			userArray[i].sname = user.sname;
-			userArray[i].stud_num = user.stud_num;
-			userArray[i].password = user.password;
-			userArray[i].phone = user.phone;
-			userArray[i].email = user.email;
-
-			response.send("user details saved");
-		}
-	}
-	if(exists == false)
-	{
-		response.send("user not found");
-	}
-
-	//actual functionality
-
-	//send user object to user module via NSQ
-	// var editUserRequest = new Object();
-	// editUserRequest.src = "Access";
-	// editUserRequest.dest = "Users";
-	// editUserRequest.msgType = "request";
-	// editUserRequest.queryType = "editUser";
-	// editUserRequest.content = new Object();
-	// editUserRequest.content = user;
-
-	// var editUserRequestJson = JSON.stringify(editUserRequest);
-
-	// //send request
-	// write.on("ready", function()
-	// {
-	// 	write.publish("users", editUserRequestJson);
-	// });
-
-	// //receive respose from user module NSQ
-	// read = new nsq.Reader('user', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
-	// read.connect();
-
-	// read.on("message", function(msg)
-	// {
-	// 	console.log("Recieved edit user confirmation: " + msg.id + msg.body.toString());
-
-	// 	if(msg.body.toString().includes("true"))
-	// 	{
-	// 		response.send("User details saved");
-	// 	}
-	// 	else
-	// 	{
-	// 		response.send("Failed to save user details");
-	// 	}
-
-	// 	msg.finish();
-	// });
-
-	// read.on("closed", function()
-	// {
-	// 	console.log("NSQ reader closed");
-	// });
-
-});
-
-app.post("/deleteProfile", function(request, response)
-{
-	//mock functions
-	var studentNumber = request.body.studentNumber;
-
-	for (var i = 0; i < userArray.length; i++) 
-	{
-		if(userArray[i].stud_num == studentNumber)
-		{
-			exists = true;
-			userArray.splice(i, 1);
-			response.send("The user account has been deleted!");
-		}
-	}
-
-	if(!exists)
-	{
-		response.send("The user account could not be deleted!");
-	}
-
-	//actual functionality
-
-	// var removeUserRequest = new Object();
-	// removeUserRequest.src = "Access";
-	// removeUserRequest.dest = "Users";
-	// removeUserRequest.msgType = "request";
-	// removeUserRequest.queryType = "removeUser";
-	// removeUserRequest.content = new Object();
-	// removeUserRequest.content.studentNumber = studentNumber;
-
-	// var removeUserRequestJson = JSON.stringify(removeUserRequest);
-
-	// //send request
-	// write.on("ready", function()
-	// {
-	// 	write.publish("users", removeUserRequestJson);
-	// });
-
-	// //receive respose from user module NSQ
-	// read = new nsq.Reader('user', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
-	// read.connect();
-
-	// read.on("message", function(msg)
-	// {
-	// 	console.log("Recieved remove user confirmation: " + msg.id + msg.body.toString());
-
-	// 	if(msg.body.toString().includes("true"))
-	// 	{
-	// 		response.send("The user account has been deleted!");
-	// 	}
-	// 	else
-	// 	{
-	// 		response.send("The user account could not be deleted!");
-	// 	}
-
-	// 	msg.finish();
-	// });
-
-	// read.on("closed", function()
-	// {
-	// 	console.log("NSQ reader closed");
-	// });
-
-});
-
-
-app.post("/addAdminRights", function(request, response)
-{
-	//mock functionality
-	var studentNumber = request.body.studentNumber;
-
-	for (var i = 0; i < userArray.length; i++) 
-	{
-		if(userArray[i].stud_num == studentNumber)
-		{
-			exists = true;
-			userArray[i].status = "admin";
-			response.send("The user has been granted admin rights!");
-		}
-	}
-
-	if(!exists)
-	{
-		response.send("The user could not be granted admin rights!");
-	}
-
-	//actual functionality
-
-	// var addAdminRightsRequest = new Object();
-	// addAdminRightsRequest.src = "Access";
-	// addAdminRightsRequest.dest = "Users";
-	// addAdminRightsRequest.msgType = "request";
-	// addAdminRightsRequest.queryType = "addAdminRights";
-	// addAdminRightsRequest.content = new Object();
-	// addAdminRightsRequest.content.studentNumber = studentNumber;
-
-	// var addAdminRightsRequestJson = JSON.stringify(addAdminRightsRequest);
-
-	// //send request
-	// write.on("ready", function()
-	// {
-	// 	write.publish("users", addAdminRightsRequestJson);
-	// });
-
-	// //receive respose from user module NSQ
-	// read = new nsq.Reader('user', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
-	// read.connect();
-
-	// read.on("message", function(msg)
-	// {
-	// 	console.log("Recieved add admin rights confirmation: " + msg.id + msg.body.toString());
-
-	// 	if(msg.body.toString().includes("true"))
-	// 	{
-	// 		response.send("The user has been granted admin rights!");
-	// 	}
-	// 	else
-	// 	{
-	// 		response.send("The user could not be granted admin rights!");
-	// 	}
-
-	// 	msg.finish();
-	// });
-
-	// read.on("closed", function()
-	// {
-	// 	console.log("NSQ reader closed");
-	// });
-});
-
-app.post("/removeAdminRights", function(request, response)
-{
-	//mock functionality
-	var studentNumber = request.body.studentNumber;
-
-	for (var i = 0; i < userArray.length; i++) 
-	{
-		if(userArray[i].stud_num == studentNumber)
-		{
-			exists = true;
-			userArray[i].status = "user";
-			response.send("The user admin rights have been removed!");
-		}
-	}
-
-	if(!exists)
-	{
-		response.send("The user admin rights could not be removed!");
-	}
-
-	//actual functionality
-
-	// var removeAdminRightsRequest = new Object();
-	// removeAdminRightsRequest.src = "Access";
-	// removeAdminRightsRequest.dest = "Users";
-	// removeAdminRightsRequest.msgType = "request";
-	// removeAdminRightsRequest.queryType = "removeAdminRights";
-	// removeAdminRightsRequest.content = new Object();
-	// removeAdminRightsRequest.content.studentNumber = studentNumber;
-
-	// var removeAdminRightsRequestJson = JSON.stringify(removeAdminRightsRequest);
-
-	// //send request
-	// write.on("ready", function()
-	// {
-	// 	write.publish("users", removeAdminRightsRequestJson);
-	// });
-
-	// //receive respose from user module NSQ
-	// read = new nsq.Reader('user', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
-	// read.connect();
-
-	// read.on("message", function(msg)
-	// {
-	// 	console.log("Recieved remove admin rights confirmation: " + msg.id + msg.body.toString());
-
-	// 	if(msg.body.toString().includes("true"))
-	// 	{
-	// 		response.send("The user admin rights have been removed!");
-	// 	}
-	// 	else
-	// 	{
-	// 		response.send("The user admin rights could not be removed!");
-	// 	}
-
-	// 	msg.finish();
-	// });
-
-	// read.on("closed", function()
-	// {
-	// 	console.log("NSQ reader closed");
-	// });
-
-});
-
-
-
-app.post("/getUser", function(request, response)
-{
-	//mock functionality
-
-	var studentNumber = request.body.studentNumber;
-
+	var id = request.body.id;
+	console.log(id);
 	var exists = false;
 
 	for (var i = 0; i < userArray.length; i++) 
 	{
-		if(userArray[i].stud_num == studentNumber)
+		if(userArray[i].id == id)
 		{
 			exists = true;
-			var user = new Object();
-			user.name = userArray[i].fname;
-			user.surname = userArray[i].sname;
-			user.email = userArray[i].email;
-			user.password = userArray[i].password;
-			user.status = userArray[i].status;
-
 			response.send(userArray[i]);
 		}
 	}
-	
 	if(exists == false)
 	{
 		response.send("user not found");
 	}
-
-	//actual functionality
-
-	// var getUserRequest = new Object();
-	// getUserRequest.src = "Access";
-	// getUserRequest.dest = "Users";
-	// getUserRequest.msgType = "request";
-	// getUserRequest.queryType = "getUser";
-	// getUserRequest.content = new Object();
-	// getUserRequest.content.studentNumber = studentNumber;
-
-	// var getUserRequestJson = JSON.stringify(getUserRequest);
-
-	// //send request
-	// write.on("ready", function()
-	// {
-	// 	write.publish("users", getUserRequestJson);
-	// });
-
-	// //receive respose from user module NSQ
-	// read = new nsq.Reader('user', 'navup', { lookupdHTTPAddresses : '127.0.0.1:4161', nsqdTCPAddresses : 'localhost:4150' });
-	// read.connect();
-
-	// read.on("message", function(msg)
-	// {
-	// 	console.log("Recieved get user confirmation: " + msg.id + msg.body.toString());
-	// 	var user = msg.body.content;
-	// 	response.send(user);
-	// 	msg.finish();
-	// });
-
-	// read.on("closed", function()
-	// {
-	// 	console.log("NSQ reader closed");
-	// });
 });
+
 /************************************************GIS**********************************************/
-app.post("navigateToLocation", function(request, response)
+app.post("navigateToLocation", function()
 {
 	var from = request.body.from;
 	var to = request.body.to;
@@ -878,27 +564,6 @@ app.post("navigateToLocation", function(request, response)
 	// });
 });
 
-
-/************************************************Data**********************************************/
-
-app.post("/getLocation", function(request, response)
-{
-	//var address = request.ip;
-	//console.log(address);
-	arp.getMAC("196.248.188.95", function(err, mac) {
-	    if (!err) 
-	    {
-	        console.log(mac);
-	        response.send(mac);
-	    }
-	    else
-	    {
-	    	console.log("An erorr occured: " + err);
-	    	response.send("An erorr occured: " + err);
-	    }
-	});
-
-});
 var port = process.argv[process.argv.length - 1];
 
 app.listen(port, function () {
