@@ -2,6 +2,9 @@ angular.module('navUP').controller('authenticateController',
 ['$scope', '$location', '$http',
 function ($scope, $location, $http) 
 {
+    $scope.loginSnError = false;
+    $scope.loginPassError = false;
+
 	$scope.register = function()
 	{
 		$location.path("/register");
@@ -9,12 +12,25 @@ function ($scope, $location, $http)
 
 	$scope.login = function(status)
 	{
+        $scope.loginSnError = false;
+        $scope.loginPassError = false;
+
 		if(status == "guest")
 		{
 			$location.path("/home" + 0 + "," + status); //guest login
 		}
 		else
 		{
+			if ($scope.stud_num == null) {
+                $scope.loginSnError = true;
+
+			}
+
+            if ($scope.password == null) {
+                $scope.loginPassError = true;
+
+            }
+
 			$http.post("/login",
 			{
 				stud_num: $scope.stud_num, password: $scope.password
@@ -40,6 +56,47 @@ function ($scope, $location, $http)
 
 	$scope.registerUser = function()
 	{
+
+        $scope.registerFNError = false;
+        $scope.registerSError = false;
+        $scope.registerSNError = false;
+        $scope.registerEmailError = false;
+        $scope.registerNumError = false;
+        $scope.registerPassError = false;
+        $scope.registerPassConfError = false;
+
+        if ($scope.fname == null) {
+            $scope.registerFNError = true;
+        }
+
+        if ($scope.sname == null) {
+            $scope.registerSError = true;
+        }
+
+        if ($scope.stud_num == null) {
+            $scope.registerSNError = true;
+        }
+
+        if ($scope.phone == null) {
+            $scope.registerEmailError = true;
+        }
+
+        if ($scope.fname == null) {
+            $scope.registerNumError = true;
+        }
+
+        if ($scope.password == null) {
+            $scope.registerPassError = true;
+        }
+
+        if ($scope.confirmPassword == null) {
+            $scope.registerPassConfError = true;
+        }
+
+        if ($scope.registerFNError || $scope.registerSError || $scope.registerSNError || $scope.registerEmailError || $scope.registerNumError || $scope.registerPassError || $scope.registerPassConfError) {
+            return;
+		}
+
 		var user = new Object();
 		user.id = null;
 		user.fname = $scope.fname;

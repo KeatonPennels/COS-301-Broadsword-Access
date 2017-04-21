@@ -24,11 +24,11 @@
             <form id="login" name="loginForm">
 
                 
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error': loginSnError}">
                         <label for="stud_num" class="loginLabel ">Student Number / EMPLID</label>
                         <input type="text" class="form-control loginInput" id="stud_num" name="stud_num" ng-model="stud_num"  placeholder="Username">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error': loginPassError}">
                         <label for="password" class="loginLabel">Password</label>
                         <input type="password" class="form-control loginInput" id="password" name="password" placeholder="Password" ng-model="password">
                     </div>
