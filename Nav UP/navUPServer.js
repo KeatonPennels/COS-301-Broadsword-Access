@@ -795,7 +795,7 @@ app.post("/getUser", function(request, response)
 			user.password = userArray[i].password;
 			user.status = userArray[i].status;
 
-			response.send(userArray[i]);
+			response.send(user);
 		}
 	}
 	
@@ -881,24 +881,24 @@ app.post("navigateToLocation", function(request, response)
 
 /************************************************Data**********************************************/
 
-app.post("/getLocation", function(request, response)
-{
-	//var address = request.ip;
-	//console.log(address);
-	arp.getMAC("196.248.188.95", function(err, mac) {
-	    if (!err) 
-	    {
-	        console.log(mac);
-	        response.send(mac);
-	    }
-	    else
-	    {
-	    	console.log("An erorr occured: " + err);
-	    	response.send("An erorr occured: " + err);
-	    }
-	});
+// app.post("/getLocation", function(request, response)
+// {
+// 	//var address = request.ip;
+// 	//console.log(address);
+// 	arp.getMAC("196.248.188.95", function(err, mac) {
+// 	    if (!err) 
+// 	    {
+// 	        console.log(mac);
+// 	        response.send(mac);
+// 	    }
+// 	    else
+// 	    {
+// 	    	console.log("An erorr occured: " + err);
+// 	    	response.send("An erorr occured: " + err);
+// 	    }
+// 	});
 
-});
+// });
 var port = process.argv[process.argv.length - 1];
 
 app.listen(port, function () {

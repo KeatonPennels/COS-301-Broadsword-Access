@@ -82,27 +82,32 @@ function ($scope, $location, $routeParams, $http)
 
     $scope.getLocation = function() {
         var marker = new google.maps.Marker({
-        position: {lat: -25.7552303, lng: 28.2324397},
+        position: {lat: -25.755627, lng: 28.232553},
         map: map,
         title: "My Location",
-
         });  
 
         map.setZoom(20);
         map.panTo(marker.position); 
     } 
 
-    $scope.calculateRoute = function() {
+    $scope.calculateRoute = function(locationFrom, locationTo) {
         navigator.geolocation.getCurrentPosition(function(position) {
+
+            //get location
             var directionsService = new google.maps.DirectionsService();
             var directionsDisplay = new google.maps.DirectionsRenderer();
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
 
-            var start = new google.maps.LatLng(-25.7552303, 28.2324397);
-            var end = new google.maps.LatLng(-25.755846, 28.233151);
+            // var pos = {
+            //   lat: position.coords.latitude,
+            //   lng: position.coords.longitude
+            // };
+
+            var from = locationFrom.split(",");
+            var to = locationTo.split(",");
+
+            var start = new google.maps.LatLng(from[0], from[1]);
+            var end = new google.maps.LatLng(to[0], to[1]);
             
             var bounds = new google.maps.LatLngBounds();
             bounds.extend(start);
@@ -113,6 +118,9 @@ function ($scope, $location, $routeParams, $http)
                 destination: end,
                 travelMode: google.maps.TravelMode.WALKING
             };
+
+            //create route
+            directionsDisplay.setMap(null);
             directionsService.route(request, function (response, status) 
             {
                 if (status == google.maps.DirectionsStatus.OK) 

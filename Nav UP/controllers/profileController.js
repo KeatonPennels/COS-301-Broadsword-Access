@@ -83,12 +83,11 @@ function ($scope, $location, $routeParams, $http)
             {
                 var userObj = response.data;
 
-                $scope.fname = userObj.fname;
-                $scope.sname = userObj.sname;
+                $scope.fname = userObj.name;
+                $scope.sname = userObj.surname;
                 $scope.email = userObj.email;
-                $scope.stud_num = userObj.stud_num;
+                $scope.stud_num = userObj.studentNumber;
                 $scope.password = userObj.password;
-                $scope.phone = userObj.phone;
             }
         }
     });

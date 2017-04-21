@@ -34,63 +34,33 @@
                     <div class="btn btn-default" ng-click="getLocation()">Get Current Position</div>
                     <div class="form-group">
                         <label for="building">From: Building</label><br>
-                        <select name="locationFrom" id="building" class="form-control">
-                            <option value="Current Location">Current Location</option>
-                            <option value="Home">IT Building</option>
-                            <option value="Home">EMB</option>
-                            <option value="Home">Student Center</option>
-                            <option value="Home">Humanities</option>
-                            <option value="Home">Centenary</option>
-                            <option value="Home">Thuto</option>
-                            <option value="Home">Engineering 1</option>
-                            <option value="Home">Engineering 2</option>
-                            <option value="Home">Engineering 3</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="room">From: Room</label><br>
-                        <select name="locationFrom" id="room" class="form-control">
-                            <option value="Current Location">Current Location</option>
-                            <option value="Home">IT 4-1</option>
-                            <option value="Home">IT 4-2</option>
-                            <option value="Home">IT 4-3</option>
-                            <option value="Home">IT 4-4</option>
-                            <option value="Home">IT 4-5</option>
-                            <option value="Home">IT 2-23</option>
-                            <option value="Home">IT 2-24</option>
-                            <option value="Home">IT 2-25</option>
+                        <select name="locationFrom" ng-model="locationFrom" id="building" class="form-control">
+                            <option value="-25.755627, 28.232553">Current Location</option>
+                            <option value="-25.755627, 28.232553">IT Building</option>
+                            <option value="-25.7552303, 28.2324397">EMB</option>
+                            <option value="-25.755582, 28.231214">Client Service Center</option>
+                            <option value="-25.754526, 28.232668">Chapel</option>
+                            <option value="-25.755318, 28.230490">Merenksey Library</option>
+                            <option value="-25.754545, 28.229020">Ampitheater</option>
+                            <option value="-25.753086, 28.228591">Engineering 1</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="building">To: Building</label><br>
-                        <select name="locationFrom" id="building" class="form-control">
-                            <option value="Home">IT Building</option>
-                            <option value="Home">EMB</option>
-                            <option value="Home">Student Center</option>
-                            <option value="Home">Humanities</option>
-                            <option value="Home">Centenary</option>
-                            <option value="Home">Thuto</option>
-                            <option value="Home">Engineering 1</option>
-                            <option value="Home">Engineering 2</option>
-                            <option value="Home">Engineering 3</option>
+                        <select name="locationTo" ng-model="locationTo" id="building" class="form-control">
+                            <option value="-25.755627, 28.232553">Current Location</option>
+                            <option value="-25.755627, 28.232553">IT Building</option>
+                            <option value="-25.7552303, 28.2324397">EMB</option>
+                            <option value="-25.755582, 28.231214">Client Service Center</option>
+                            <option value="-25.754526, 28.232668">Chapel</option>
+                            <option value="-25.755318, 28.230490">Merenksey Library</option>
+                            <option value="-25.754545, 28.229020">Ampitheater</option>
+                            <option value="-25.753086, 28.228591">Engineering 1</option>
                         </select>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="room">To: Room</label><br>
-                        <select name="locationFrom" id="room" class="form-control">
-                            <option value="Home">IT 4-1</option>
-                            <option value="Home">IT 4-2</option>
-                            <option value="Home">IT 4-3</option>
-                            <option value="Home">IT 4-4</option>
-                            <option value="Home">IT 4-5</option>
-                            <option value="Home">IT 2-23</option>
-                            <option value="Home">IT 2-24</option>
-                            <option value="Home">IT 2-25</option>
-                        </select>
-                    </div>
+
+                    <button class="btn btn-default" ng-click="calculateRoute(locationFrom, locationTo)">Calculate Route</button>
                 </fieldset>
             </form>
         </div>
