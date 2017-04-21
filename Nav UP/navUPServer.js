@@ -516,7 +516,6 @@ app.post("/viewProfile", function(request, response)
 		if(userArray[i].id == id)
 		{
 			exists = true;
-<<<<<<< HEAD
 			var user = new Object();
 			user.name = userArray[i].fname;
 			user.surname = userArray[i].sname;
@@ -525,9 +524,6 @@ app.post("/viewProfile", function(request, response)
 			user.status = userArray[i].status;
 
 			response.send(user);
-=======
-			response.send(userArray[i]);
->>>>>>> origin/master
 		}
 	}
 	if(exists == false)
