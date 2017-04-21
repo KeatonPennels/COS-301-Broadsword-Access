@@ -5,55 +5,9 @@ function ($scope, $location, $http)
     $scope.loginSnError = false;
     $scope.loginPassError = false;
 
-    $scope.registerFNError = false;
-    $scope.registerSError = false;
-    $scope.registerSNError = false;
-    $scope.registerEmailError = false;
-    $scope.registerNumError = false;
-    $scope.registerPassError = false;
-    $scope.registerPassConfError = false;
-
 	$scope.register = function()
 	{
-        $scope.registerFNError = false;
-        $scope.registerSError = false;
-        $scope.registerSNError = false;
-        $scope.registerEmailError = false;
-        $scope.registerNumError = false;
-        $scope.registerPassError = false;
-        $scope.registerPassConfError = false;
-
-        if ($scope.fname == null) {
-            $scope.registerFNError = true;
-        }
-
-        if ($scope.sname == null) {
-            $scope.registerSError = true;
-        }
-
-        if ($scope.stud_num == null) {
-            $scope.registerSNError = true;
-        }
-
-        if ($scope.phone == null) {
-            $scope.registerEmailError = true;
-        }
-
-        if ($scope.fname == null) {
-            $scope.registerNumError = true;
-        }
-
-        if ($scope.password == null) {
-            $scope.registerPassError = true;
-        }
-
-        if ($scope.confirmPassword == null) {
-            $scope.registerPassConfError = true;
-        }
-
-        if (!$scope.registerFNError || !$scope.registerSError || !$scope.registerSNError || !$scope.registerEmailError || !$scope.registerNumError || !$scope.registerPassError || !$scope.registerPassConfError) {
-            $location.path("/register");
-		}
+		$location.path("/register");
 	}
 
 	$scope.login = function(status)
@@ -102,6 +56,47 @@ function ($scope, $location, $http)
 
 	$scope.registerUser = function()
 	{
+
+        $scope.registerFNError = false;
+        $scope.registerSError = false;
+        $scope.registerSNError = false;
+        $scope.registerEmailError = false;
+        $scope.registerNumError = false;
+        $scope.registerPassError = false;
+        $scope.registerPassConfError = false;
+
+        if ($scope.fname == null) {
+            $scope.registerFNError = true;
+        }
+
+        if ($scope.sname == null) {
+            $scope.registerSError = true;
+        }
+
+        if ($scope.stud_num == null) {
+            $scope.registerSNError = true;
+        }
+
+        if ($scope.phone == null) {
+            $scope.registerEmailError = true;
+        }
+
+        if ($scope.fname == null) {
+            $scope.registerNumError = true;
+        }
+
+        if ($scope.password == null) {
+            $scope.registerPassError = true;
+        }
+
+        if ($scope.confirmPassword == null) {
+            $scope.registerPassConfError = true;
+        }
+
+        if ($scope.registerFNError || $scope.registerSError || $scope.registerSNError || $scope.registerEmailError || $scope.registerNumError || $scope.registerPassError || $scope.registerPassConfError) {
+            return;
+		}
+
 		var user = new Object();
 		user.id = null;
 		user.fname = $scope.fname;
