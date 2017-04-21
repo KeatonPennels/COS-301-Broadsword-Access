@@ -2,6 +2,9 @@ angular.module('navUP').controller('authenticateController',
 ['$scope', '$location', '$http',
 function ($scope, $location, $http) 
 {
+    $scope.loginSnError = false;
+    $scope.loginPassError = false;
+
 	$scope.register = function()
 	{
 		$location.path("/register");
@@ -9,12 +12,25 @@ function ($scope, $location, $http)
 
 	$scope.login = function(status)
 	{
+        $scope.loginSnError = false;
+        $scope.loginPassError = false;
+
 		if(status == "guest")
 		{
 			$location.path("/home" + 0 + "," + status); //guest login
 		}
 		else
 		{
+			if ($scope.stud_num == null) {
+                $scope.loginSnError = true;
+
+			}
+
+            if ($scope.password == null) {
+                $scope.loginPassError = true;
+
+            }
+
 			$http.post("/login",
 			{
 				stud_num: $scope.stud_num, password: $scope.password
