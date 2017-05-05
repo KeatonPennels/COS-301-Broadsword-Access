@@ -51,6 +51,7 @@
 			[2mm]
 			\large{	
 				\href{https://github.com/KeatonPennels}{Keaton Pennels - 14373018}\\
+				\href{https://github.com/JoshC117}{Joshua Cilliers - 14267196}\\
 					% add your names here				
 			
 				}
@@ -111,6 +112,45 @@
 			NavUP is currently envisioned as a native mobile application that serves to navigate users around the Hatfield campus of the University of Pretoria. This application will be utilised by students, staff and visitors to the Hatfield campus in order to find their way around.\\
 			
 		\section{Non - Functional Requirements}\label{sec:overall-nonfunctional}
+		
+		\subsection{Security}\label{subsec:overall-security}
+		    \textbf{\underline{Password Protection}}\newline
+		    \textbf{Action:} Attempt to circumvent the password protection\newline
+            \textbf{Expected Result:} The password protection should be secure and impervious to circumvention.\newline
+            \textbf{Actual Result:} The password protection at the login screen is secure and doesn't allow users to login unless their password is correct. The Profile Management page however has a loophole when changing passwords though, in that it allows users to change passwords even if the password they enter into the Old Password field (for authentication) is incorrect.\newline
+            \textbf{Possible Improvements:} The app should lock down the profile if the password is entered incorrectly too many times. The profile can then remain locked until an authentication email is sent to the user allowing them to unlock their profile. \newline
+            \textbf{Mark:} 7/10\newline
+            
+            \textbf{\underline{SQL Injection}}\newline
+		    \textbf{Action:} Attempt to inject SQL code into the database\newline
+            \textbf{Expected Result:} The SQL injection should be blocked by escaping the special characters entered.\newline
+            \textbf{Actual Result:} The SQL injection couldn't be tested because none of the data entered is persisted to a database. However, no code was found to sanitize harmful characters from user input before passing it to the user module. \newline
+            \textbf{Possible Improvements:} The app could escape characters before passing it to the user module. \newline
+            \textbf{Mark:} 2/10\newline
+
+        \subsection{Stability}\label{subsec:overall-stability}
+		    \textbf{\underline{Crash Testing}}\newline
+		    \textbf{Action:} Attempt to crash the Access module through overloading input.\newline
+            \textbf{Expected Result:} The app will remain running.\newline
+            \textbf{Actual Result:} The app avoided crashing but was slowed down to an extent by the large amount of input.\newline
+            \textbf{Possible Improvements:} The app should implement a character limit on input fields to fully guard against this issue.\newline
+            \textbf{Mark:} 8/10\newline
+            
+        \subsection{Accessibility}\label{subsec:overall-accessibility}
+		    \textbf{\underline{Support for disabilities with routes}}\newline
+		    \textbf{Action:} Does the app provide an option for routes that are friendly to people with disabilities?\newline
+            \textbf{Expected Result:} The app does provides such a feature with routes that avoid stairs and follow wheelchair-friendly routes.\newline
+            \textbf{Actual Result:} The app does not provide such a feature.\newline
+            \textbf{Mark:} N/A\newline
+            
+        \textbf{\underline{Support for colour-blindness}}\newline
+		    \textbf{Action:} Does the app provide an option to present the User Interface in a manner that is colour-blind friendly?\newline
+            \textbf{Expected Result:} The app has options for different kinds of colour-blindness.\newline
+            \textbf{Actual Result:} The app doesn't provide support for different kinds of colour-blindness.\newline
+            \textbf{Mark:} N/A\newline
+            
+
 
 
 \end{document}
+
