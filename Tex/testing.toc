@@ -1,42 +1,55 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}Introduction}{2}
-\contentsline {subsection}{\numberline {1.1}Definitions, Acronyms, and Abbreviations}{2}
-\contentsline {subsection}{\numberline {1.2}Overview}{2}
-\contentsline {section}{\numberline {2}Test Model}{3}
-\contentsline {section}{\numberline {3}List of Service Contracts Tested}{4}
-\contentsline {subsection}{\numberline {3.1}Users}{4}
-\contentsline {subsubsection}{\numberline {3.1.1}User Registration}{4}
-\contentsline {subsubsection}{\numberline {3.1.2}User Login}{7}
-\contentsline {subsubsection}{\numberline {3.1.3}Edit Profile}{9}
-\contentsline {subsubsection}{\numberline {3.1.4}Delete Profile}{10}
-\contentsline {subsection}{\numberline {3.2}GIS (GIS Management)}{10}
-\contentsline {subsubsection}{\numberline {3.2.1}View GIS Data}{10}
-\contentsline {subsubsection}{\numberline {3.2.2}Add GIS Data}{10}
-\contentsline {subsubsection}{\numberline {3.2.3}Edit GIS Data}{11}
-\contentsline {subsubsection}{\numberline {3.2.4}Remove GIS Data}{11}
-\contentsline {subsection}{\numberline {3.3}Points of Interest (Location Access)}{11}
-\contentsline {subsubsection}{\numberline {3.3.1}Search Location}{11}
-\contentsline {subsubsection}{\numberline {3.3.2}Save Location}{11}
-\contentsline {subsubsection}{\numberline {3.3.3}Get Current Location}{11}
-\contentsline {subsection}{\numberline {3.4}Points of Interest (Location Management)}{12}
-\contentsline {subsubsection}{\numberline {3.4.1}View Locations}{12}
-\contentsline {subsubsection}{\numberline {3.4.2}Add location}{12}
-\contentsline {subsubsection}{\numberline {3.4.3}Modify Location}{12}
-\contentsline {subsubsection}{\numberline {3.4.4}Remove Location}{12}
-\contentsline {subsection}{\numberline {3.5}Navigation}{12}
-\contentsline {subsubsection}{\numberline {3.5.1}Navigate to Location}{12}
-\contentsline {subsubsection}{\numberline {3.5.2}Save Preferences}{12}
-\contentsline {subsection}{\numberline {3.6}Registration}{13}
-\contentsline {subsection}{\numberline {3.7}Login:}{14}
-\contentsline {section}{\numberline {4}List of Functional Requirements Tested}{15}
-\contentsline {section}{\numberline {5}List of Non-Functional Requirements Tested}{16}
-\contentsline {subsection}{\numberline {5.1}Performance requirements:}{16}
-\contentsline {subsubsection}{\numberline {5.1.1}Performance:}{16}
-\contentsline {subsubsection}{\numberline {5.1.2}Reliability:}{16}
-\contentsline {subsubsection}{\numberline {5.1.3}Security:}{16}
-\contentsline {subsection}{\numberline {5.2}Design Constraints:}{17}
-\contentsline {subsection}{\numberline {5.3}Software System Attributes:}{17}
-\contentsline {section}{\numberline {6}Evaluation of Test Cases for Non-Functional Requirements}{18}
-\contentsline {subsection}{\numberline {6.1}Security}{18}
-\contentsline {subsection}{\numberline {6.2}Stability}{18}
-\contentsline {subsection}{\numberline {6.3}Accessibility}{19}
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {subsection}{\numberline {1.1}Definitions, Acronyms, and Abbreviations}{3}
+\contentsline {subsection}{\numberline {1.2}Overview}{3}
+\contentsline {section}{\numberline {2}Test Model}{4}
+\contentsline {section}{\numberline {3}List of Service Contracts Tested}{5}
+\contentsline {subsection}{\numberline {3.1}Users}{6}
+\contentsline {subsubsection}{\numberline {3.1.1}User Registration}{6}
+\contentsline {paragraph}{Additional comments: \newline Feedback in the form of text could have been given to indicate that data needs to be filled in before a successful registration can be achieved.}{9}
+\contentsline {paragraph}{More should be done in order to ensure that only users with unique usernames are allowed to register.}{9}
+\contentsline {paragraph}{The system should ensure that users are not registered to the application if their given email address is already been used by another user. This is important since email addresses are used to sign into the application.}{9}
+\contentsline {paragraph}{Since almost half of the registration tests failed, the awarded mark out of ten was reduced to five and a half. One mark was then subtracted from this mark since more feedback could have been given. \newline }{9}
+\contentsline {subsubsection}{\numberline {3.1.2}User Login}{10}
+\contentsline {paragraph}{Additional Comments:\newline Instead of the application taking the user to the navigation page once they have logged in, they could instead be taken to a homepage.}{13}
+\contentsline {paragraph}{The sign in can still be improved by giving the user more feedback when data is left blank.}{13}
+\contentsline {paragraph}{Since the actual results of all of the test cases were the same as the expected results, the sign in should be awarded full marks. However, since the sign in can still be improved by giving the user more feedback when data is left blank, only 9/10 was awarded as there is still room for improvement.\newline }{13}
+\contentsline {subsubsection}{\numberline {3.1.3}Edit Profile}{13}
+\contentsline {paragraph}{Additional comments: \newline A possible improvement could be to add an input field to the "Edit Profile" page for the user to change their password.}{14}
+\contentsline {paragraph}{Since three of the five test cases actual results were not the same as the expected result, the awarded mark out of ten was initially four. Since one has to navigate to another page to change their password, another mark was deducted. \newline }{14}
+\contentsline {subsubsection}{\numberline {3.1.4}Delete Profile}{14}
+\contentsline {subsection}{\numberline {3.2}GIS (GIS Management)}{14}
+\contentsline {subsubsection}{\numberline {3.2.1}View GIS Data}{14}
+\contentsline {paragraph}{Additional comments: \newline The application is intended to display an interface, which an admin user can use to manage GIS locations, but instead it only provides a list of locations and no options to make any changes to these objects. \newline }{14}
+\contentsline {subsubsection}{\numberline {3.2.2}Add GIS Data}{14}
+\contentsline {subsubsection}{\numberline {3.2.3}Edit GIS Data}{14}
+\contentsline {subsubsection}{\numberline {3.2.4}Remove GIS Data}{15}
+\contentsline {subsection}{\numberline {3.3}Points of Interest (Location Access)}{15}
+\contentsline {subsubsection}{\numberline {3.3.1}Search Location}{15}
+\contentsline {paragraph}{Additional comments: \newline The application could offer a search bar, which the user can use to search for a specific location. \newline }{15}
+\contentsline {subsubsection}{\numberline {3.3.2}Save Location}{15}
+\contentsline {subsubsection}{\numberline {3.3.3}Get Current Location}{15}
+\contentsline {paragraph}{Additional comments: \newline The application marks a location on the map, although this location is not the correct location. This would lead to incorrect locations being saved, and could also affect the process of navigating from the users current location to another location. \newline }{16}
+\contentsline {paragraph}{Since the only test case failed, a mark of zero would be awarded however, the page is pleasing to look at which resulted in an additional two marks being added. \newline }{16}
+\contentsline {subsection}{\numberline {3.4}Points of Interest (Location Management)}{16}
+\contentsline {subsubsection}{\numberline {3.4.1}View Locations}{16}
+\contentsline {subsubsection}{\numberline {3.4.2}Add location}{16}
+\contentsline {subsubsection}{\numberline {3.4.3}Modify Location}{16}
+\contentsline {subsubsection}{\numberline {3.4.4}Remove Location}{16}
+\contentsline {subsection}{\numberline {3.5}Navigation}{16}
+\contentsline {subsubsection}{\numberline {3.5.1}Navigate to Location}{16}
+\contentsline {subsubsection}{\numberline {3.5.2}Save Preferences}{16}
+\contentsline {section}{\numberline {4}List of Functional Requirements Tested}{16}
+\contentsline {section}{\numberline {5}List of Non-Functional Requirements Tested}{17}
+\contentsline {subsection}{\numberline {5.1}Performance requirements:}{17}
+\contentsline {subsubsection}{\numberline {5.1.1}Performance:}{17}
+\contentsline {subsubsection}{\numberline {5.1.2}Reliability:}{17}
+\contentsline {subsubsection}{\numberline {5.1.3}Security:}{18}
+\contentsline {subsection}{\numberline {5.2}Design Constraints:}{18}
+\contentsline {subsection}{\numberline {5.3}Software System Attributes:}{18}
+\contentsline {section}{\numberline {6}Evaluation of Test Cases for Non-Functional Requirements}{19}
+\contentsline {subsection}{\numberline {6.1}Security}{19}
+\contentsline {subsection}{\numberline {6.2}Stability}{19}
+\contentsline {subsection}{\numberline {6.3}Accessibility}{20}
+\contentsline {subsection}{\numberline {6.4}Performance Testing}{20}
+\contentsline {subsection}{\numberline {6.5}Usability Testing}{22}
