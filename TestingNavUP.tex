@@ -1,0 +1,116 @@
+\documentclass{article}
+
+\usepackage[margin=2.5cm,left=2cm,includefoot]{geometry}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\usepackage{titlesec}
+
+% Set depth for sections (one more than usual)
+\setcounter{secnumdepth}{4}
+
+% Set paragraphs to be the 4th section depth
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{COS301 - \LaTeX}
+\lhead{Team Broadsword Access}
+\fancyfoot{}
+\fancyfoot[R]{Page \thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+%
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+
+			\line(1,0){400}\\
+			[6mm]
+			\huge{
+				\bfseries Testing NavUP System
+			}\\
+			[2mm]
+			\line(1,0){300}\\
+			[15mm]
+			\textsc{\large NavUP}\\
+			[7.5mm]
+			\textsc{\large University of Pretoria - Team Broadsword - Access}\\
+			[20mm]
+			\large{\textbf{Created By:}}\\
+			[2mm]
+			\large{	
+				\href{https://github.com/KeatonPennels}{Keaton Pennels - 14373018}\\
+					% add your names here				
+			
+				}
+	
+
+		\href{https://github.com/KeatonPennels/COS-301-Broadsword-Access}{\textsc{\Large GitHub Repository - Team Broadsword-Access}\\[2mm]
+		  For more information, please click here}
+
+		\end{center}
+		\begin{flushright}
+			\textsc{\large 22 April 2017}
+		\end{flushright}
+	\end{titlepage}
+
+	\cleardoublepage
+	\thispagestyle{empty}
+	\tableofcontents
+	\cleardoublepage
+
+	\thispagestyle{empty}
+	\listoffigures
+	\cleardoublepage
+	\setcounter{page}{1}
+	\section{Introduction}\label{sec:intro}
+
+				This chapter of the document aims to present the findings of the indepth testing done on the Gladios instance of the NavUP application. A test model was used for the various specifications of the core functions and innovations implemented.
+
+		\subsection{Definitions, Acronyms, and Abbreviations}\label{subsec:daa}
+			\begin{table}[h!]
+				\centering
+				\caption{Table of Definitions, Acronyms, and Abbreviations used in this document}
+				\label{tab: Table 1}
+				\begin{tabular}{| m{4cm} | m{12cm} |}
+					\hline
+					\textbf{Term} & \textbf{Definition} \\
+					\hline
+					\hline
+
+		
+					\hline
+					
+
+				\end{tabular}
+			\end{table}
+
+
+		\subsection{Overview}\label{subsec:overview}
+			The remainder of this document will consist the test model used during testing, to functional requirements tested as well as the non-functional requirements tested.\\
+
+
+	\cleardoublepage
+
+	\section{Test Model}\label{sec:overall-Test Model}
+	\section{Functional Requirements}\label{sec:overall-functional}
+		This chapter aims to give an overview of the entire NavUP system. The system will be contextualised in order to demonstrate the basic functionality of the system as well as demonstrate how the system interacts with other systems. It will also describe the levels, or types, of users that will utilise the system and describe the functionality that is available to said user. At the end of this chapter, the constraints and assumptions for the system will be addressed.
+
+		\subsection{Service Contracts}\label{subsec:overall-contracts}
+			NavUP is currently envisioned as a native mobile application that serves to navigate users around the Hatfield campus of the University of Pretoria. This application will be utilised by students, staff and visitors to the Hatfield campus in order to find their way around.\\
+			
+		\section{Non - Functional Requirements}\label{sec:overall-nonfunctional}
+
+
+\end{document}
