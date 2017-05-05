@@ -149,6 +149,48 @@
             \textbf{Actual Result:} The app doesn't provide support for different kinds of colour-blindness.\newline
             \textbf{Mark:} N/A\newline
             
+	    
+	    	\subsection{Performance Testing}\label{subsec:overall-performance}
+		A IPhone 6 with the below specifications were used in order to conduct the various performance testing \newline
+		
+		Specifications: Operating System – iOS 10.3 \newline
+		  Chipset – Apple A8 \newline 
+		 CPU – Dual Core 1.4 GHz \newline
+		 RAM – 1GB DDR3  \newline
+		 Storage – 32GB \newline
+		 
+		 The below table displays the performance statics gathered when running the NavUP application on the above device. The respective functionality was conducted 10 times and then an average of these cases were recorded in the Measure column. Recorded statistics were taken from the XCode debugging suite.
+		 
+		 \begin{table}[h!]
+		 	\centering
+		 	\caption{Table of collected data for Performance testing}
+		 	\label{tab: Table 2}
+		 	\begin{tabular}{111}
+		 		\hline
+		 		\textbf{Functionality} & \textbf{Description} & \textbf{Measurement}\\
+		 		\hline
+		 		\hline
+		 		Application launch &	Time taken for home screen to load when application is opened & 1.42 seconds \\ 
+		 		 & Initial memory usage when application is launched  & 118.3 MB  \\ 
+		 	    &	Initial percentage of CPU used when application is launched &	0.8 \% \\
+		 		 & Amount of data read when application is launched  &	40 KB \\
+		 		 & Amount of data read when application is launched  &	300 KB \\
+		 		 Registration  & 	Time taken to register a new user & 	0.7 seconds \\
+		 		 &  Memory increase when new user is registered	 & 57.9 MB \\
+		 		  & Amount of data written when new user is registered & 	1.2 MB \\
+		 		 Profile Management & 	Time taken to update user details & 	0.2 seconds \\
+		 		  & Memory increase when new user is registered	 & 10.6 MB \\
+		 		  & Amount of data read when user profile is displayed & 	200 KB \\
+		 		 &  Amount of data that was written when user details were updated & 	0.64 MB \\ 
+		 		 
+		 		
+		 		
+		 		
+		 		\hline
+		 		
+		 		
+		 	\end{tabular}
+		 \end{table}
 
 
 
