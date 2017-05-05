@@ -38,7 +38,7 @@
 	\begin{tabu} to \textwidth { X[l] X[l]}
 		\hline
 		\textbf{Surname, First Name  }	& \textbf{Student Number}	\\ \hline \hline
-		Pennels 	Keaton   &12345678	\\ \hline
+		Pennels 	Keaton   & u14373018	\\ \hline
 		Mpofu	Munyaradzi   &12345678		\\ \hline
 		Cilliers	Joshua   &12345678		\\ \hline
 		Walsh     Brent    &15300201		\\ \hline
@@ -473,6 +473,71 @@ Mark awarded: 9/10
             \textbf{Expected Result:} The app has options for different kinds of colour-blindness.\newline
             \textbf{Actual Result:} The app doesn't provide support for different kinds of colour-blindness.\newline
             \textbf{Mark:} N/A\newline
+	    
+	    \subsection{Performance Testing}\label{subsec:overall-performance}
+		A IPhone 6 with the below specifications were used in order to conduct the various performance testing \newline
+		
+		Specifications: Operating System – iOS 10.3 \newline
+		  Chipset – Apple A8 \newline 
+		 CPU – Dual Core 1.4 GHz \newline
+		 RAM – 1GB DDR3  \newline
+		 Storage – 32GB \newline
+		 
+		 The below table displays the performance statics gathered when running the NavUP application on the above device. The respective functionality was conducted 10 times and then an average of these cases were recorded in the Measure column. Recorded statistics were taken from the XCode debugging suite.
+		 
+		 \begin{table}[h!]
+		 	\centering
+		 	\caption{Table of collected data for Performance testing}
+		 	\label{tab: Table 2}
+		 	\begin{tabular}{111}
+		 		\hline
+		 		\textbf{Functionality} & \textbf{Description} & \textbf{Measurement}\\
+		 		\hline
+		 		\hline
+		 		Application launch &	Time taken for home screen to load when application is opened & 1.42 seconds \\ 
+		 		 & Initial memory usage when application is launched  & 118.3 MB  \\ 
+		 	    &	Initial percentage of CPU used when application is launched &	0.8 \% \\
+		 		 & Amount of data read when application is launched  &	40 KB \\
+		 		 & Amount of data read when application is launched  &	300 KB \\
+		 		 Registration  & 	Time taken to register a new user & 	0.7 seconds \\
+		 		 &  Memory increase when new user is registered	 & 57.9 MB \\
+		 		  & Amount of data written when new user is registered & 	1.2 MB \\
+		 		 Profile Management & 	Time taken to update user details & 	0.2 seconds \\
+		 		  & Memory increase when new user is registered	 & 10.6 MB \\
+		 		  & Amount of data read when user profile is displayed & 	200 KB \\
+		 		 &  Amount of data that was written when user details were updated & 	0.64 MB \\ 
+		 		 
+		 		
+		 		
+		 		
+		 		\hline
+		 		
+		 		
+		 	\end{tabular}
+		 \end{table}
+		
+		\cleardoublepage
+		
+		We were unable to test the navigation with relation to performance as its functionality was not available to us. It was estimated that this would incorporated a large part of the applications performance requirements in terms of memory and CPU usage \newline
+		
+		\textbf{Mark =} 9/10 \newline
+		Comment: The Gladios instance of the NavUP application performs well in terms of time taken for the application the execute user tasks. As this is the majority concern for all 3 user groups, this instance meets the requirements in terms of performance. The memory and CPU time required by the application is in general quite low which allows it to perform well even when other applications are running on a device. It would have been preferable if the performance requirements of navigation could have been tested in order to gauge how the application performs under general usage conditions.
+		
+		\subsection{Usability Testing}\label{subsec:usabilty}  
+		
+		The Gladios instance of NavUp usability testing was evaluated in terms of 3 key components: \textbf{Effectiveness} (Whether or not the user’s goal was achieved), \textbf{Efficiency} (Whether a user’s goal is achieved in a proficient manner) and \textbf{Aesthetics} (Whether the look and feel adhered and/or enhances applications purpose). \newline
+		
+		The user’s goals that were taken into consideration was that of all 3 different user groups of the NavUP application. All tasks were derived from the model Requirements Specifications. Upon completion of these 3 user groups interacting with the application, the following results were gathered. \newline
+		
+		\textbf{Effectiveness} – Guest and General users were able to carry out all tasks related to the core functionality required of the NavUP application whereas Admin users were not provided with required User and GIS administrative functionality. This was not seen as a major shortcoming in terms of effectiveness as the majority of administrative functionality would take place on the Web instance of the NavUP application. Tasks involving Add On functionality were sparsely implemented for all 3 user groups with only basic navigation functionality being provided to the users \newline
+		
+		\textbf{Efficiency} – The application provides a simple user interface and requires only basic touch, swipe and type interactions. The majority of functionality is reachable to the user within the range of 3 to 5 clicks/touches. Where the app lacks in efficiency is in two areas:  1) a call to action for the user upon launching the application was absent. The user was required to open a descriptionless menu tab in order being interaction and 2) providing guiding prompts to direct the user’s interaction with the application. Users were not informed of incorrect inputs and struggled when registering, logging in and searching.\newline
+		
+		\textbf{Aesthetics} – The user is presented with interface whose colour scheme is in conjunction with that of the University of Pretoria. This along with the structure of components within the application being similar to that of other popular navigation applications such as Google Maps and Waze Maps ensured that interactions would be intrinsically familiar to the user. All menus and search interactions were formatted consistently throughout the applications which prevented confusion and allowed for the user to become familiar with the user interface \newline
+		
+	\textbf{Mark =} 7/10 \newline
+	
+		Comment:  All three user groups have access to almost all of the core functionality and some of the add on functionality which facilitates the completion of user goals and tasks. Minor adjustments such as improvements to the navigation functionality to allow for a more in-depth searching of locations and route calculations. Error messages and user prompts can also be more elegantly designed in order to facilitate correct interactions with the application. Other than these few points, the Gladios instance of the NavUP application is generally usable from a user perspective and provides an enjoyable interactions 
 
 
 %		\includepdf[scale=0.9,pages=-,pagecommand=\section{UML Diagrams}\subsection{Class diagrams}\subsubsection{Points of Interest}]{class_diagram_poi.pdf}
